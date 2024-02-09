@@ -19,6 +19,7 @@
 #define SYS 6
 
 #define ___    &trans
+#define xxx    &none
 #define CANCEL &kp K_CANCEL
 
 #define TAPPING_TERM 200
@@ -45,11 +46,8 @@
 #define KEYS_R 6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35  // right hand
 #define THUMBS 36 37 38 39 40 41                                  // thumbs
 
-&caps_word {  // mods deactivate caps-word, requires PR #1451
-    /delete-property/ ignore-modifiers;
-};
-
 #define HRC_TAB    &hml         LG(LCTRL) TAB
+#define HRC_REPEAT &hml_repeat  LS(LGUI) 0
 #define HRC_LPAR   &hmr_lpar_lt RS(LGUI) 0
 #define HRC_RPAR   &hmr_rpar_gt LG(LCTRL) 0
 
@@ -77,6 +75,18 @@
             global-quick-tap-ms = <G_QUICK_TAP>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
+        };
+        hml_repeat: homerow_mod_repeat {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MOD_REPEAT";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <TAPPING_TERM>;
+            quick-tap-ms = <QUICK_TAP>;
+            global-quick-tap-ms = <G_QUICK_TAP>;
+            bindings = <&kp>, <&key_repeat>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
             hold-trigger-on-release;
         };
         hmr_lpar_lt: homerow_mod_lpar {
@@ -126,19 +136,49 @@
             bindings = <&kp RPAR>, <&kp GT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+        // tap: comma | shift + tap: semicolon | ctrl + shift + tap: <
+        comma_morph: COMMA_MORPH {
+            compatible = "zmk,behavior-mod-morph";
+            label = "comma_morph";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&comma_inner_morph>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        comma_inner_morph: COMMA_INNER_MORPH {
+            compatible = "zmk,behavior-mod-morph";
+            label = "comma_inner_morph";
+            #binding-cells = <0>;
+            bindings = <&kp SEMICOLON>, <&kp LESS_THAN>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+        // tap: dot | shift + tap: colon | ctrl + shift + tap: >
+        dot_morph: dot_MORPH {
+            compatible = "zmk,behavior-mod-morph";
+            label = "dot_morph";
+            #binding-cells = <0>;
+            bindings = <&kp DOT>, <&dot_inner_morph>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        dot_inner_morph: dot_INNER_MORPH {
+            compatible = "zmk,behavior-mod-morph";
+            label = "dot_inner_morph";
+            #binding-cells = <0>;
+            bindings = <&kp COLON>, <&kp GREATER_THAN>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
     };
 
     combos {
         compatible = "zmk,combos";
-        combo_esc {
+        /* combo_esc {
             timeout-ms = <COMBO_TERM>;
             bindings = <&kp ESC>;
             key-positions = <2 3>;
             layers = <DEF>;
             global-quick-tap-ms = <G_QUICK_TAP>;
-        };
+        }; */
         combo_ret {
-            timeout-ms = <COMBO_TERM>;
+            timeout-ms = <10>;
             bindings = <&kp RET>;
             key-positions = <3 4>;
             layers = <DEF>;
@@ -148,6 +188,13 @@
             timeout-ms = <COMBO_TERM>;
             bindings = <HRC_TAB>;
             key-positions = <14 15>;
+            layers = <DEF>;
+            global-quick-tap-ms = <G_QUICK_TAP>;
+        };
+        combo_repeat {
+            timeout-ms = <COMBO_TERM>;
+            bindings = <HRC_REPEAT>;
+            key-positions = <15 16>;
             layers = <DEF>;
             global-quick-tap-ms = <G_QUICK_TAP>;
         };
@@ -219,7 +266,7 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <FUN NUM>;
+            if-layers = <MED SYM>;
             then-layer = <SYS>;
         };
     };
@@ -229,10 +276,11 @@
 
         default_layer {
             bindings = <
-   &kp GRAVE &kp Q       &kp W        &kp E       &kp R        &kp T         /*|*/ &kp Y       &kp U        &kp I       &kp O        &kp P          &kp BSLH
-   &kp ESC   &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F &kp G         /*|*/ &kp H       &hmr RSHFT J &hmr LGUI K &hmr LCTRL L &hmr LALT SEMI &kp SQT
-   ___       &kp Z       &kp X        &kp C       &kp V        &kp B         /*|*/ &kp N       &kp M        &kp COMMA   &kp DOT      &kp FSLH       &kp MINUS
-                                      &lt MED TAB &lt FUN RET  &lt NAV SPACE /*|*/ &smart_shft &lt NUM BSPC &lt SYM DEL
+   &kp GRAVE &kp Q       &kp W        &kp E       &kp R         &kp T       /*|*/ &kp Y        &kp U        &kp I        &kp O        &kp P         &kp EQUAL
+   &kp ESC   &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F  &kp G       /*|*/ &kp H        &hmr RSHFT J &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT &kp MINUS
+   &kp EXCL  &kp Z       &kp X        &kp C       &kp V         &kp B       /*|*/ &kp N        &kp M        &comma_morph &dot_morph   &kp FSLH      &kp QMARK
+                                     // &lt MED TAB &lt FUN RET &lt NAV SPACE /*|*/ &smart_shft &lt NUM BSPC  &lt SYM DEL
+                                     &lt MED TAB &lt FUN RET &lt NAV SPACE     /*|*/ &smart_shft  &lt NUM BSPC &lt SYM DEL
             >;
         };
 
@@ -256,19 +304,19 @@
 
         num_layer {
             bindings = <
-   ___ &kp LBKT       &kp N7        &kp N8       &kp N9        &kp RBKT  /*|*/ ___ ___       ___      ___      ___      ___
-   ___ &hml LALT SEMI &hml LCTRL N4 &hml LGUI N5 &hml RSHFT N6 &kp EQUAL /*|*/ ___ &sk RSHFT &sk LGUI &sk LCTL &sk LALT ___
-   ___ &kp GRAVE      &kp N1        &kp N2       &kp N3        &kp BSLH  /*|*/ ___ ___       ___      ___      ___      ___
+   ___ &kp LBKT       &kp N7        &kp N8       &kp N9        &kp RBKT  /*|*/ ___ ___       ___      ___       ___      ___
+   ___ &hml LALT SEMI &hml LCTRL N4 &hml LGUI N5 &hml RSHFT N6 &kp EQUAL /*|*/ ___ &sk RSHFT &sk LGUI &sk LCTRL &sk LALT ___
+   ___ &kp GRAVE      &kp N1        &kp N2       &kp N3        &kp BSLH  /*|*/ ___ ___       ___      ___       ___      ___
                                     &kp DOT      &kp N0        &kp MINUS /*|*/ ___ ___       ___
             >;
         };
 
         sym_layer {
             bindings = <
-   ___ &kp LBRC        &kp AMPS        &kp STAR        &kp LPAR         &kp RBRC  /*|*/ ___ ___       ___      ___      ___      ___
-   ___ &hml LALT COLON &hml LCTRL DLLR &hml LGUI PRCNT &hml RSHFT CARET &kp PLUS  /*|*/ ___ &sk RSHFT &sk LGUI &sk LCTL &sk LALT ___
-   ___ &kp TILDE       &kp EXCL        &kp AT          &kp HASH         &kp PIPE  /*|*/ ___ ___       ___      ___      ___      ___
-                                       &kp LPAR        &kp RPAR         &kp UNDER /*|*/ ___ ___       ___
+   ___ &kp LBRC        &kp AMPS        &kp STAR        &kp LPAR         &kp RBRC  /*|*/ ___ ___       ___      ___       ___      ___
+   ___ &hml LALT COLON &hml LCTRL DLLR &hml LGUI PRCNT &hml RSHFT CARET &kp PLUS  /*|*/ ___ &sk RSHFT &sk LGUI &sk LCTRL &sk LALT ___
+   ___ &kp TILDE       &kp EXCL        &kp AT          &kp HASH         &kp PIPE  /*|*/ ___ ___       ___      ___       ___      ___
+                                       ___             &kp RPAR         &kp UNDER /*|*/ ___ ___       ___
             >;
         };
 
@@ -277,7 +325,7 @@
    ___ ___ ___ ___ ___ ___ /*|*/ ___        ___          ___          ___        ___ ___
    ___ ___ ___ ___ ___ ___ /*|*/ &kp C_PREV &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT ___ ___
    ___ ___ ___ ___ ___ ___ /*|*/ ___        ___          ___          ___        ___ ___
-               ___ ___ ___ /*|*/ &kp C_STOP &kp C_PP     &kp C_MUTE
+               ___ ___ ___ /*|*/ &kp C_PP &kp C_MUTE     ___
             >;
         };
 
