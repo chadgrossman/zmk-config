@@ -401,15 +401,17 @@
         compatible = "zmk,keymap";
 
         default_layer {
+            display-name = "Mac";
             bindings = <
-   &kp GRAVE &kp Q       &kp W        &kp E       &kp R         &kp T       /*|*/ &kp Y        &kp U        &kp I        &kp O        &kp P         &kp EQUAL
-   &kp ESC   &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F  &kp G       /*|*/ &kp H        &hmr RSHFT J &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT &kp MINUS
-   &kp EXCL  &kp Z       &kp X        &kp C       &kp V         &kp B       /*|*/ &kp N        &kp M        &comma_morph &dot_morph   &kp FSLH      &kp QMARK
-                                     &lt MED TAB &lt FUN RET &lt NAV SPACE     /*|*/ &smart_shft  &lt NUM BSPC &lt SYM DEL
+   &kp GRAVE &kp Q       &kp W        &kp E       &kp R         &kp T         /*|*/ &kp Y        &kp U        &kp I        &kp O        &kp P         &kp EQUAL
+   &kp ESC   &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F  &kp G         /*|*/ &kp H        &hmr RSHFT J &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT &kp MINUS
+   &kp EXCL  &kp Z       &kp X        &kp C       &kp V         &kp B         /*|*/ &kp N        &kp M        &comma_morph &dot_morph   &kp FSLH      &kp QMARK
+                                      &lt MED TAB  &lt FUN RET  &lt NAV SPACE /*|*/ &smart_shft  &lt NUM BSPC &lt SYM DEL
             >;
         };
 
         nav_layer {
+            display-name = "Navigation";
             bindings = <
    ___ ___       ___       ___        &kp LG(TAB) ___ /*|*/ &kp LG(Z) &kp LG(V) &kp LG(C) &kp LG(X) &kp LG(LS(Z)) ___ 
    ___ &sk LALT  &sk LCTRL &sk LGUI   &sk LSHFT   ___ /*|*/ &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &kp RET       ___
@@ -419,6 +421,7 @@
         };
 
         fun_layer {
+            display-name = "Function";
             bindings = <
    ___ &kp F12 &kp F7 &kp F8  &kp F9    &kp PSCRN       /*|*/ ___          ___          ___        ___           ___ ___
    ___ &kp F11 &kp F4 &kp F5  &kp F6    &kp SLCK        /*|*/ &kp LC(LEFT) &kp LC(DOWN) &kp LC(UP) &kp LC(RIGHT) ___ ___
@@ -428,6 +431,7 @@
         };
 
         num_layer {
+            display-name = "Numbers";
             bindings = <
    ___ &kp LBKT       &kp N7        &kp N8       &kp N9        &kp RBKT  /*|*/ ___ ___       ___      ___       ___      ___
    ___ &hml LALT SEMI &hml LCTRL N4 &hml LGUI N5 &hml RSHFT N6 &kp EQUAL /*|*/ ___ &sk RSHFT &sk LGUI &sk LCTRL &sk LALT ___
@@ -437,6 +441,7 @@
         };
 
         sym_layer {
+            display-name = "Symbols";
             bindings = <
    ___ &kp LBRC        &kp AMPS        &kp STAR        &kp LPAR         &kp RBRC  /*|*/ ___ ___       ___      ___       ___      ___
    ___ &hml LALT COLON &hml LCTRL DLLR &hml LGUI PRCNT &hml RSHFT CARET &kp PLUS  /*|*/ ___ &sk RSHFT &sk LGUI &sk LCTRL &sk LALT ___
@@ -446,6 +451,7 @@
         };
 
         med_layer {
+            display-name = "Media";
             bindings = <
    ___ ___ ___ ___ ___ ___ /*|*/ ___        ___          ___          ___        ___ ___
    ___ ___ ___ ___ ___ ___ /*|*/ &kp C_PREV &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT ___ ___
@@ -455,11 +461,22 @@
         };
 
         sys_layer {
+            display-name = "System";
             bindings = <
             _BT_SEL_KEYS_          /*|*/ ___         ___    ___    ___    ___    ___   
    ___ ___ ___ ___ ___ &bootloader /*|*/ &bootloader ___    ___    ___    ___    ___   
    ___ ___ ___ ___ ___ &sys_reset  /*|*/ &sys_reset  ___    ___    ___    ___    ___    
                ___ ___ ___         /*|*/ ___         ___    ___    
+            >;
+        };
+
+        win_layer {
+            display-name = "Windows";
+            bindings = <
+   &kp GRAVE &kp Q       &kp W        &kp E        &kp R        &kp T         /*|*/ &kp Y        &kp U        &kp I         &kp O        &kp P        &kp EQUAL
+   &kp ESC   &hml LGUI A &hml LALT S  &hml LCTRL D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J &hmr LCTRL K  &hmr LALT L &hmr LGUI SQT &kp MINUS
+   &kp EXCL  &kp Z       &kp X        &kp C        &kp V        &kp B         /*|*/ &kp N        &kp M        &comma_morph  &dot_morph   &kp FSLH     &kp QMARK
+                                      &lt MED TAB  &lt FUN RET  &lt NAV SPACE /*|*/ &smart_shft  &lt NUM BSPC &lt SYM DEL
             >;
         };
     };
