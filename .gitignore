@@ -3,3 +3,6 @@
 
 # MacOS system files
 .DS_Store
+
+# Firmware files
+firmware/
