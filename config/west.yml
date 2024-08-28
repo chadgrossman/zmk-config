@@ -6,7 +6,7 @@ manifest:
       url-base: https://github.com/chadgrossman
   projects:
     - name: zmk
-      remote: zmkfirmware
+      remote: chadgrossman
       revision: main
       import: app/west.yml
   self:

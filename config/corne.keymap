@@ -273,18 +273,18 @@
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
         combo_bspc {
-            timeout-ms = <COMBO_TERM_FAST>;
+            timeout-ms = <COMBO_TERM_SLOW>;
             bindings = <&kp BSPC>;
             key-positions = <7 8>;
             layers = <MAC WIN>;
-            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
         combo_del {
-            timeout-ms = <COMBO_TERM_FAST>;
+            timeout-ms = <COMBO_TERM_SLOW>;
             bindings = <&kp DEL>;
             key-positions = <8 9>;
             layers = <MAC WIN>;
-            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
 
         combo_at {
@@ -375,28 +375,28 @@
             timeout-ms = <COMBO_TERM_SLOW>;
             bindings = <&kp UNDER>;
             key-positions = <18 30>;
-            layers = <MAC WIN>;
+            layers = <MAC WIN MNM WNM>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
         combo_dash {
             timeout-ms = <COMBO_TERM_SLOW>;
             bindings = <&kp MINUS>;
             key-positions = <19 31>;
-            layers = <MAC WIN>;
+            layers = <MAC WIN MNM WNM>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
         combo_fslh {
             timeout-ms = <COMBO_TERM_SLOW>;
             bindings = <&kp FSLH>;
             key-positions = <20 32>;
-            layers = <MAC WIN>;
+            layers = <MAC WIN MNM WNM>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
         combo_pipe {
             timeout-ms = <COMBO_TERM_SLOW>;
             bindings = <&kp PIPE>;
             key-positions = <21 33>;
-            layers = <MAC WIN>;
+            layers = <MAC WIN MNM WNM>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
     };
@@ -438,7 +438,7 @@
    xxx &kp Q       &kp W        &kp E       &kp R         &kp T         /*|*/ &kp Y        &kp U        &kp I        &kp O        &kp P         xxx
    xxx &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F  &kp G         /*|*/ &kp H        &hmr RSHFT J &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT xxx
    xxx &kp Z       &kp X        &kp C       &kp V         &kp B         /*|*/ &kp N        &kp M        &comma_morph &dot_morph   &excl_morph   xxx
-                                &lt MED TAB  &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  &lt MNM BSPC &lt MSM DEL
+                                      &lt MED TAB  &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  &lt MNM BSPC &lt MSM DEL
             >;
         };
 
@@ -502,7 +502,7 @@
             >;
         };
 
-        num_layer {
+        wnm_layer {
             display-name = "Numbers";
             bindings = <
    ___ &kp LBKT       &kp N7       &kp N8        &kp N9        &kp RBKT  /*|*/ ___ ___       ___       ___      ___      ___
