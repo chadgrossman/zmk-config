@@ -119,6 +119,14 @@
             hold-trigger-key-positions = <KEYS_L THUMBS>;
             hold-trigger-on-release;
         };
+        smart_num: SMART_NUM {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <TAPPING_TERM>;
+            quick-tap-ms = <QUICK_TAP>;
+            bindings = <&lt>, <&num_word>;
+        };
         smart_shft: SMART_SHIFT {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -442,20 +450,20 @@
         default_layer {
             display-name = "Mac";
             bindings = <
-   xxx &kp Q       &kp W        &kp E       &kp R        &kp T         /*|*/ &kp Y        &kp U         &kp I        &kp O        &kp P         xxx
-   xxx &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J  &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT xxx
-   xxx &kp Z       &kp X        &kp C       &kp V        &kp B         /*|*/ &kp N        &kp M         &comma_morph &dot_morph   &excl_morph   xxx
-                                &lt MED TAB &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  &num_word MNM &bspc_morph
+   xxx &kp Q       &kp W        &kp E       &kp R        &kp T         /*|*/ &kp Y        &kp U          &kp I        &kp O        &kp P         xxx
+   xxx &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J   &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT xxx
+   xxx &kp Z       &kp X        &kp C       &kp V        &kp B         /*|*/ &kp N        &kp M          &comma_morph &dot_morph   &excl_morph   xxx
+                                &lt MED TAB &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  &smart_num MNM &bspc_morph
             >;
         };
 
         win_layer {
             display-name = "Windows";
             bindings = <
-   xxx &kp Q       &kp W        &kp E        &kp R        &kp T         /*|*/ &kp Y        &kp U         &kp I         &kp O       &kp P         xxx
-   xxx &hml LGUI A &hml LALT S  &hml LCTRL D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J  &hmr LCTRL K  &hmr LALT L &hmr LGUI SQT xxx
-   xxx &kp Z       &kp X        &kp C        &kp V        &kp B         /*|*/ &kp N        &kp M         &comma_morph  &dot_morph  &excl_morph   xxx
-                                &lt MED TAB  &lt WFN RET  &lt WNV SPACE /*|*/ &smart_shft  &num_word WNM &bspc_morph
+   xxx &kp Q       &kp W        &kp E        &kp R        &kp T         /*|*/ &kp Y        &kp U          &kp I         &kp O       &kp P         xxx
+   xxx &hml LGUI A &hml LALT S  &hml LCTRL D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J   &hmr LCTRL K  &hmr LALT L &hmr LGUI SQT xxx
+   xxx &kp Z       &kp X        &kp C        &kp V        &kp B         /*|*/ &kp N        &kp M          &comma_morph  &dot_morph  &excl_morph   xxx
+                                &lt MED TAB  &lt WFN RET  &lt WNV SPACE /*|*/ &smart_shft  &smart_num WNM &bspc_morph
             >;
         };
 
