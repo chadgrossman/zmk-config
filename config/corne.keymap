@@ -37,7 +37,7 @@
 #define COMBO_IDLE_FAST 150
 #define COMBO_IDLE_SLOW 50
 
-#define SMART_NUM &smart_num NUM 0
+#define SMRT_NUM &smart_num MNM 0
 
 
 &sk {
@@ -139,7 +139,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&num_word MNM>, <&sl MNM>;
+            bindings = <&sl MNM>, <&num_word MNM>;
         };
         // tap: left-parenthesis | shft + tap: less-than
         lpar_lt: LPAR_LT {
@@ -461,17 +461,17 @@
    xxx &kp Q       &kp W        &kp E       &kp R        &kp T         /*|*/ &kp Y        &kp U        &kp I        &kp O        &kp P         xxx
    xxx &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT xxx
    xxx &kp Z       &kp X        &kp C       &kp V        &kp B         /*|*/ &kp N        &kp M        &comma_morph &dot_morph   &excl_morph   xxx
-                                &lt MED TAB &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  SMART_NUM   &bspc_morph
+                                &lt MED TAB &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  SMRT_NUM     &bspc_morph
             >;
         };
 
         win_layer {
             display-name = "Windows";
             bindings = <
-   xxx &kp Q       &kp W        &kp E        &kp R        &kp T         /*|*/ &kp Y        &kp U         &kp I         &kp O       &kp P         xxx
-   xxx &hml LGUI A &hml LALT S  &hml LCTRL D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J  &hmr LCTRL K  &hmr LALT L &hmr LGUI SQT xxx
-   xxx &kp Z       &kp X        &kp C        &kp V        &kp B         /*|*/ &kp N        &kp M         &comma_morph  &dot_morph  &excl_morph   xxx
-                                &lt MED TAB  &lt WFN RET  &lt WNV SPACE /*|*/ &smart_shft  SMART_NUM &bspc_morph
+   xxx &kp Q       &kp W        &kp E        &kp R        &kp T         /*|*/ &kp Y        &kp U        &kp I         &kp O       &kp P         xxx
+   xxx &hml LGUI A &hml LALT S  &hml LCTRL D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J &hmr LCTRL K  &hmr LALT L &hmr LGUI SQT xxx
+   xxx &kp Z       &kp X        &kp C        &kp V        &kp B         /*|*/ &kp N        &kp M        &comma_morph  &dot_morph  &excl_morph   xxx
+                                &lt MED TAB  &lt WFN RET  &lt WNV SPACE /*|*/ &smart_shft  SMRT_NUM     &bspc_morph
             >;
         };
 
