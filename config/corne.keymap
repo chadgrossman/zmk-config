@@ -450,20 +450,20 @@
         default_layer {
             display-name = "Mac";
             bindings = <
-   xxx &kp Q       &kp W        &kp E       &kp R        &kp T         /*|*/ &kp Y        &kp U          &kp I        &kp O        &kp P         xxx
-   xxx &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J   &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT xxx
-   xxx &kp Z       &kp X        &kp C       &kp V        &kp B         /*|*/ &kp N        &kp M          &comma_morph &dot_morph   &excl_morph   xxx
-                                &lt MED TAB &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  &smart_num MNM &bspc_morph
+   xxx &kp Q       &kp W        &kp E       &kp R        &kp T         /*|*/ &kp Y        &kp U                &kp I        &kp O        &kp P         xxx
+   xxx &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J         &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT xxx
+   xxx &kp Z       &kp X        &kp C       &kp V        &kp B         /*|*/ &kp N        &kp M                &comma_morph &dot_morph   &excl_morph   xxx
+                                &lt MED TAB &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  &lt MNM num_word MNM &bspc_morph
             >;
         };
 
         win_layer {
             display-name = "Windows";
             bindings = <
-   xxx &kp Q       &kp W        &kp E        &kp R        &kp T         /*|*/ &kp Y        &kp U          &kp I         &kp O       &kp P         xxx
-   xxx &hml LGUI A &hml LALT S  &hml LCTRL D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J   &hmr LCTRL K  &hmr LALT L &hmr LGUI SQT xxx
-   xxx &kp Z       &kp X        &kp C        &kp V        &kp B         /*|*/ &kp N        &kp M          &comma_morph  &dot_morph  &excl_morph   xxx
-                                &lt MED TAB  &lt WFN RET  &lt WNV SPACE /*|*/ &smart_shft  &smart_num WNM &bspc_morph
+   xxx &kp Q       &kp W        &kp E        &kp R        &kp T         /*|*/ &kp Y        &kp U         &kp I         &kp O       &kp P         xxx
+   xxx &hml LGUI A &hml LALT S  &hml LCTRL D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J  &hmr LCTRL K  &hmr LALT L &hmr LGUI SQT xxx
+   xxx &kp Z       &kp X        &kp C        &kp V        &kp B         /*|*/ &kp N        &kp M         &comma_morph  &dot_morph  &excl_morph   xxx
+                                &lt MED TAB  &lt WFN RET  &lt WNV SPACE /*|*/ &smart_shft  &num_word WNM &bspc_morph
             >;
         };
 
@@ -513,17 +513,17 @@
    ___ &kp LBKT       &kp N7        &kp N8       &kp N9        &kp RBKT  /*|*/ ___ ___       ___      ___       ___      ___
    ___ &hml LALT SEMI &hml LCTRL N4 &hml LGUI N5 &hml RSHFT N6 &kp EQUAL /*|*/ ___ &sk RSHFT &sk LGUI &sk LCTRL &sk LALT ___
    ___ &kp GRAVE      &kp N1        &kp N2       &kp N3        &kp BSLH  /*|*/ ___ ___       ___      ___       ___      ___
-                                    &kp DOT      &kp N0        &kp MINUS /*|*/ ___ ___       ___
+                                    &kp DOT      &kp N0        &lt MNV MINUS /*|*/ ___ ___       ___
             >;
         };
 
         wnm_layer {
             display-name = "Numbers";
             bindings = <
-   ___ &kp LBKT       &kp N7       &kp N8        &kp N9        &kp RBKT  /*|*/ ___ ___       ___       ___      ___      ___
-   ___ &hml LGUI SEMI &hml LALT N4 &hml LCTRL N5 &hml RSHFT N6 &kp EQUAL /*|*/ ___ &sk RSHFT &sk LCTRL &sk LALT &sk LGUI ___
-   ___ &kp GRAVE      &kp N1       &kp N2        &kp N3        &kp BSLH  /*|*/ ___ ___       ___       ___      ___      ___
-                                   &kp DOT       &kp N0        &kp MINUS /*|*/ ___ ___       ___
+   ___ &kp LBKT       &kp N7       &kp N8        &kp N9        &kp RBKT      /*|*/ ___ ___       ___       ___      ___      ___
+   ___ &hml LGUI SEMI &hml LALT N4 &hml LCTRL N5 &hml RSHFT N6 &kp EQUAL     /*|*/ ___ &sk RSHFT &sk LCTRL &sk LALT &sk LGUI ___
+   ___ &kp GRAVE      &kp N1       &kp N2        &kp N3        &kp BSLH      /*|*/ ___ ___       ___       ___      ___      ___
+                                   &kp DOT       &kp N0        &lt WNV MINUS /*|*/ ___ ___       ___
             >;
         };
 
