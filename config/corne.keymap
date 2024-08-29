@@ -138,7 +138,7 @@
             #binding-cells = <0>;
             tapping-term-ms = <TAPPING_TERM>;
             bindings = <&num_word MNM>, <&sl MNM>;
-        }
+        };
         // tap: left-parenthesis | shft + tap: less-than
         lpar_lt: LPAR_LT {
             compatible = "zmk,behavior-mod-morph";
