@@ -5,6 +5,7 @@
  */
 
 #include <behaviors.dtsi>
+#include <behaviors/num_word.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
@@ -168,6 +169,12 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp EXCL>, <&kp QMARK>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        bspc_morph: BSPC_MORPH {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BSPC>, <&kp DEL>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
@@ -435,20 +442,20 @@
         default_layer {
             display-name = "Mac";
             bindings = <
-   xxx &kp Q       &kp W        &kp E       &kp R         &kp T         /*|*/ &kp Y        &kp U        &kp I        &kp O        &kp P         xxx
-   xxx &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F  &kp G         /*|*/ &kp H        &hmr RSHFT J &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT xxx
-   xxx &kp Z       &kp X        &kp C       &kp V         &kp B         /*|*/ &kp N        &kp M        &comma_morph &dot_morph   &excl_morph   xxx
-                                      &lt MED TAB  &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  &lt MNM BSPC &lt MSM DEL
+   xxx &kp Q       &kp W        &kp E       &kp R        &kp T         /*|*/ &kp Y        &kp U         &kp I        &kp O        &kp P         xxx
+   xxx &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J  &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT xxx
+   xxx &kp Z       &kp X        &kp C       &kp V        &kp B         /*|*/ &kp N        &kp M         &comma_morph &dot_morph   &excl_morph   xxx
+                                &lt MED TAB &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  &num_word MNM &bspc_morph
             >;
         };
 
         win_layer {
             display-name = "Windows";
             bindings = <
-   xxx &kp Q       &kp W        &kp E        &kp R        &kp T         /*|*/ &kp Y        &kp U        &kp I         &kp O       &kp P         xxx
-   xxx &hml LGUI A &hml LALT S  &hml LCTRL D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J &hmr LCTRL K  &hmr LALT L &hmr LGUI SQT xxx
-   xxx &kp Z       &kp X        &kp C        &kp V        &kp B         /*|*/ &kp N        &kp M        &comma_morph  &dot_morph  &excl_morph   xxx
-                                &lt MED TAB  &lt WFN RET  &lt WNV SPACE /*|*/ &smart_shft  &lt WNM BSPC &lt WSM DEL
+   xxx &kp Q       &kp W        &kp E        &kp R        &kp T         /*|*/ &kp Y        &kp U         &kp I         &kp O       &kp P         xxx
+   xxx &hml LGUI A &hml LALT S  &hml LCTRL D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J  &hmr LCTRL K  &hmr LALT L &hmr LGUI SQT xxx
+   xxx &kp Z       &kp X        &kp C        &kp V        &kp B         /*|*/ &kp N        &kp M         &comma_morph  &dot_morph  &excl_morph   xxx
+                                &lt MED TAB  &lt WFN RET  &lt WNV SPACE /*|*/ &smart_shft  &num_word WNM &bspc_morph
             >;
         };
 
