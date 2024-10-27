@@ -9,7 +9,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-#define _BT_SEL_KEYS_ &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
+#define _BT_SEL_KEYS_ &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
 
 #define MAC 0
 #define WIN 1
@@ -458,20 +458,20 @@
         default_layer {
             display-name = "Mac";
             bindings = <
-   xxx &kp Q       &kp W        &kp E       &kp R        &kp T         /*|*/ &kp Y        &kp U        &kp I        &kp O        &kp P         xxx
-   xxx &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT xxx
-   xxx &kp Z       &kp X        &kp C       &kp V        &kp B         /*|*/ &kp N        &kp M        &comma_morph &dot_morph   &excl_morph   xxx
-                                &lt MED TAB &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  SMRT_NUM     &bspc_morph
+   &kp GRAVE &kp Q       &kp W        &kp E       &kp R        &kp T         /*|*/ &kp Y        &kp U        &kp I        &kp O        &kp P         &kp BSPC
+   &kp ESC   &hml LALT A &hml LCTRL S &hml LGUI D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J &hmr LGUI K  &hmr LCTRL L &hmr LALT SQT &kp SEMICOLON
+   xxx       &kp Z       &kp X        &kp C       &kp V        &kp B         /*|*/ &kp N        &kp M        &comma_morph &dot_morph   &excl_morph   &kp QMARK
+                                      &lt MED TAB &lt MFN RET  &lt MNV SPACE /*|*/ &smart_shft  SMRT_NUM     &bspc_morph
             >;
         };
 
         win_layer {
             display-name = "Windows";
             bindings = <
-   xxx &kp Q       &kp W        &kp E        &kp R        &kp T         /*|*/ &kp Y        &kp U        &kp I         &kp O       &kp P         xxx
-   xxx &hml LGUI A &hml LALT S  &hml LCTRL D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J &hmr LCTRL K  &hmr LALT L &hmr LGUI SQT xxx
-   xxx &kp Z       &kp X        &kp C        &kp V        &kp B         /*|*/ &kp N        &kp M        &comma_morph  &dot_morph  &excl_morph   xxx
-                                &lt MED TAB  &lt WFN RET  &lt WNV SPACE /*|*/ &smart_shft  SMRT_NUM     &bspc_morph
+   &kp GRAVE &kp Q       &kp W        &kp E        &kp R        &kp T         /*|*/ &kp Y        &kp U        &kp I         &kp O       &kp P         &kp BSPC
+   &kp ESC   &hml LGUI A &hml LALT S  &hml LCTRL D &hml LSHFT F &kp G         /*|*/ &kp H        &hmr RSHFT J &hmr LCTRL K  &hmr LALT L &hmr LGUI SQT &kp SEMICOLON
+   xxx       &kp Z       &kp X        &kp C        &kp V        &kp B         /*|*/ &kp N        &kp M        &comma_morph  &dot_morph  &excl_morph   xxx
+                                      &lt MED TAB  &lt WFN RET  &lt WNV SPACE /*|*/ &smart_shft  SMRT_NUM     &bspc_morph
             >;
         };
 
@@ -521,17 +521,17 @@
    ___ &kp LBKT       &kp N7        &kp N8       &kp N9        &kp RBKT  /*|*/ ___ ___       ___      ___       ___      ___
    ___ &hml LALT SEMI &hml LCTRL N4 &hml LGUI N5 &hml RSHFT N6 &kp EQUAL /*|*/ ___ &sk RSHFT &sk LGUI &sk LCTRL &sk LALT ___
    ___ &kp GRAVE      &kp N1        &kp N2       &kp N3        &kp BSLH  /*|*/ ___ ___       ___      ___       ___      ___
-                                    &kp DOT      &kp N0        &lt MNV MINUS /*|*/ ___ ___       ___
+                                    &kp DOT      &kp N0        ___       /*|*/ ___ ___       ___
             >;
         };
 
         wnm_layer {
             display-name = "Numbers";
             bindings = <
-   ___ &kp LBKT       &kp N7       &kp N8        &kp N9        &kp RBKT      /*|*/ ___ ___       ___       ___      ___      ___
-   ___ &hml LGUI SEMI &hml LALT N4 &hml LCTRL N5 &hml RSHFT N6 &kp EQUAL     /*|*/ ___ &sk RSHFT &sk LCTRL &sk LALT &sk LGUI ___
-   ___ &kp GRAVE      &kp N1       &kp N2        &kp N3        &kp BSLH      /*|*/ ___ ___       ___       ___      ___      ___
-                                   &kp DOT       &kp N0        &lt WNV MINUS /*|*/ ___ ___       ___
+   ___ &kp LBKT       &kp N7       &kp N8        &kp N9        &kp RBKT  /*|*/ ___ ___       ___       ___      ___      ___
+   ___ &hml LGUI SEMI &hml LALT N4 &hml LCTRL N5 &hml RSHFT N6 &kp EQUAL /*|*/ ___ &sk RSHFT &sk LCTRL &sk LALT &sk LGUI ___
+   ___ &kp GRAVE      &kp N1       &kp N2        &kp N3        &kp BSLH  /*|*/ ___ ___       ___       ___      ___      ___
+                                   &kp DOT       &kp N0        ___       /*|*/ ___ ___       ___
             >;
         };
 
@@ -568,7 +568,7 @@
         sys_layer {
             display-name = "System";
             bindings = <
-   ___      _BT_SEL_KEYS_          /*|*/ ___         ___    ___    ___    &tog WIN ___   
+         _BT_SEL_KEYS_             /*|*/ ___         ___    ___    ___    &tog WIN ___   
    ___ ___ ___ ___ ___ &bootloader /*|*/ &bootloader ___    ___    ___    ___      ___   
    ___ ___ ___ ___ ___ &sys_reset  /*|*/ &sys_reset  ___    ___    ___    ___      ___    
                ___ ___ ___         /*|*/ ___         ___    ___    
