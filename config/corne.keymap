@@ -162,14 +162,6 @@
     combos {
         compatible = "zmk,combos";
 
-        combo_bspc {
-            bindings = <&kp BACKSPACE>;
-            key-positions = <7 8>;
-            layers = <0 2 3>;
-            timeout-ms = <20>;
-            require-prior-idle-ms = <100>;
-        };
-
         combo_esc {
             bindings = <&kp ESC>;
             key-positions = <2 3>;
@@ -186,16 +178,48 @@
             require-prior-idle-ms = <100>;
         };
 
-        combo_lbkt {
-            bindings = <&kp LBKT>;
-            key-positions = <31 32>;
+        combo_bspc {
+            bindings = <&kp BACKSPACE>;
+            key-positions = <7 8>;
+            layers = <0 2 3>;
+            timeout-ms = <20>;
+            require-prior-idle-ms = <100>;
+        };
+
+        combo_del {
+            bindings = <&kp DEL>;
+            key-positions = <8 9>;
+            layers = <0 2 3>;
+            timeout-ms = <20>;
+            require-prior-idle-ms = <50>;
+        };
+
+        combo_tab {
+            bindings = <&hml LG(LCTRL) TAB>;
+            key-positions = <13 14>;
+            layers = <0 2 3>;
+            timeout-ms = <10>;
+            require-prior-idle-ms = <100>;
+        };
+
+        combo_repeat {
+            bindings = <&hml_repeat LS(LGUI) 0>;
+            key-positions = <15 16>;
+            layers = <0 2 3>;
+            timeout-ms = <10>;
+            require-prior-idle-ms = <100>;
+        };
+
+        combo_lpar {
+            bindings = <&hmr_lpar_lt LS(LGUI) 0>;
+            key-positions = <19 20>;
             layers = <0 2 3>;
             timeout-ms = <20>;
         };
 
-        combo_rbkt {
-            bindings = <&kp RBKT>;
-            key-positions = <32 33>;
+        combo_rpar {
+            bindings = <&hmr_rpar_gt LG(LEFT_CONTROL) 0>;
+            key-positions = <20 21>;
             layers = <0 2 3>;
             timeout-ms = <20>;
         };
@@ -221,12 +245,18 @@
             timeout-ms = <20>;
         };
 
-        combo_del {
-            bindings = <&kp DEL>;
-            key-positions = <8 9>;
+        combo_lbkt {
+            bindings = <&kp LBKT>;
+            key-positions = <31 32>;
             layers = <0 2 3>;
             timeout-ms = <20>;
-            require-prior-idle-ms = <50>;
+        };
+
+        combo_rbkt {
+            bindings = <&kp RBKT>;
+            key-positions = <32 33>;
+            layers = <0 2 3>;
+            timeout-ms = <20>;
         };
 
         combo_at {
@@ -339,16 +369,6 @@
             key-positions = <21 33>;
             layers = <0 2 3>;
             timeout-ms = <30>;
-        };
-
-        combo_lpar {
-            bindings = <&hmr_lpar_lt LS(LGUI) 0>;
-            key-positions = <19 20>;
-        };
-
-        combo_rpar {
-            bindings = <&hmr_rpar_gt LG(LEFT_CONTROL) 0>;
-            key-positions = <20 21>;
         };
     };
 
