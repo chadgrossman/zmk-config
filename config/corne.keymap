@@ -132,7 +132,7 @@
             bindings = <&kp SEMICOLON>, <&kp LESS_THAN>;
 
             #binding-cells = <0>;
-            mods = <(MOD_LCTL|MOD_RCTL)>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
         };
 
         dot_morph: dot_morph {
@@ -150,7 +150,7 @@
             bindings = <&kp COLON>, <&kp GREATER_THAN>;
 
             #binding-cells = <0>;
-            mods = <(MOD_LCTL|MOD_RCTL)>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
         };
 
         excl_morph: excl_morph {
