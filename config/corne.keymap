@@ -384,7 +384,7 @@
 &trans  &kp Q        &kp W         &kp E        &kp R         &kp T          &kp Y         &kp U           &kp I               &kp O                &kp P               &trans
 &trans  &kp A        &kp S         &kp D        &kp F         &kp G          &kp H         &kp J           &kp K               &kp L                &kp SQT             &trans
 &trans  &hml LALT Z  &hml LCTRL X  &hml LGUI C  &hml LSHFT V  &kp B          &kp N         &hmr RSHFT M    &hmr_cmorph LGUI 0  &hmr_dmorph LCTRL 0  &hmr_emorph LALT 0  &trans
-                                   &lt 4 TAB    &lt 2 ENTER   &lt 1 SPACE    &smart_shift  &smart_num 3 3  &BACKSPACE
+                                   &lt 4 TAB    &lt 2 ENTER   &lt 1 SPACE    &smart_shift  &smart_num 3 3  &kp BACKSPACE
             >;
 
             label = "Mac";
