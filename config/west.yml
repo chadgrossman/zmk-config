@@ -32,8 +32,10 @@ manifest:
     # ZMK modules
     - name: zmk-adaptive-key
       path: modules/zmk/adaptive-key
+      remote: urob
     - name: zmk-auto-layer
       path: modules/zmk/auto-layer
+      remote: urob
 
   self:
     path: config
