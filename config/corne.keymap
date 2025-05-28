@@ -168,7 +168,7 @@ ZMK_BASE_LAYER(Qwerty,
 &kp TAB  &kp Q        &kp W         &kp E        &kp R         &kp T        ,    &kp Y         &kp U         &kp I               &kp O                &kp P               &kp BACKSPACE,
 &kp ESC  &kp A        &kp S         &kp D        &kp F         &kp G        ,    &kp H         &kp J         &kp K               &kp L                &kp SQT             &kp SEMICOLON,
 &trans   &hml LALT Z  &hml LCTRL X  &hml LGUI C  &hml LSHFT V  &kp B        ,    &kp N         &hmr RSHFT M  &hmr_cmorph LGUI 0  &hmr_dmorph LCTRL 0  &hmr_emorph LALT 0  &trans       ,
-                                    &trans       &lt FN ENTER  &lt NAV SPACE,    MAGIC_SHIFT   SMART_NUM     &trans
+                                    &trans       &lt FN ENTER  &lt_spc NAV 0,    MAGIC_SHIFT   SMART_NUM     &trans
 )
 
 ZMK_BASE_LAYER(Colemak,
@@ -178,7 +178,7 @@ ZMK_BASE_LAYER(Colemak,
                                     &trans       &lt FN ENTER  &lt NAV SPACE,    MAGIC_SHIFT  SMART_NUM     &trans
 )
 
-ZMK_BASE_LAYER(Magic,
+ZMK_BASE_LAYER(Navi,
 &trans  &trans    &trans     &trans    &kp LG(TAB)  &trans,    &kp PG_UP   NAV_BSPC  NAV_UP    NAV_DEL    &trans   &trans,
 &trans  &trans    &trans     &trans    &trans       &trans,    &kp PG_DN   NAV_LEFT  NAV_DOWN  NAV_RIGHT  &kp RET  &trans,
 &trans  &sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT    &trans,    &kp INS     &kp TAB   &trans    &trans     &trans   &trans,
