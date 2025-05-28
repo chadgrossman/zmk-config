@@ -176,7 +176,7 @@ ZMK_LAYER(Colemak,                                                              
                                     &trans       &lt FN ENTER  &lt NAV SPACE    &MAGIC_SHIFT  SMART_NUM       &trans                                                                     \
 )
 
-ZMK_LAYER(Magic,                                                                                                         \                                                                                                                                                         \
+ZMK_LAYER(Magic,                                                                                                         \
 &trans  &trans    &trans     &trans    &kp LG(TAB)  &trans    &kp PG_UP   NAV_BSPC  NAV_UP    NAV_DEL    &trans   &trans \
 &trans  &trans    &trans     &trans    &trans       &trans    &kp PG_DN   NAV_LEFT  NAV_DOWN  NAV_RIGHT  &kp RET  &trans \
 &trans  &sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT    &trans    &kp INS     &kp TAB   &trans    &trans     &trans   &trans \
