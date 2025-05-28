@@ -324,7 +324,7 @@
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
         combo_ldrsh {
-            bindings = <leader_sft, >;
+            bindings = <&leader_sft>;
             key-positions = <LM2 LM1>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_FAST>;
