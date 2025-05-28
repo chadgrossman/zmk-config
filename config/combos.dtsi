@@ -4,54 +4,260 @@
 #define COMBO_IDLE_FAST 150
 #define COMBO_IDLE_SLOW 50
 
-/* Horizontal combos - left hand */
-ZMK_COMBO(esc,   &kp ESC,      LT3 LT2,         DEF CDH NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(ent,   &kp ENTER,    LT2 LT1,         DEF CDH NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+/ {
+    combos {
+        compatible = "zmk,combos";
 
-// Combos overlapping HRMs are set up as hold-taps themselves to allow for instantaneous
-// chording of mods. Custom hold-tap instances can be bootstrapped on the go using the
-// 8-argument version of ZMK_COMBO defined in base.keymap.
+        /* Horizontal combos - left hand */
+        combo_esc {
+            bindings = <&kp ESC>
+            key-positions = <LT3 LT2>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_ent {
+            bindings = <&kp ENTER>
+            key-positions = <LT2 LT1>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
 
-ZMK_COMBO(tab,   &kp TAB,      LM3 LM2,         DEF CDH NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(ldr,   &leader,      LM2 LM1,         DEF CDH NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(ldrsh, &leader_sft,  LM3 LM2 LM1,     DEF CDH NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+        combo_tab {
+            bindings = <&kp TAB>
+            key-positions = <LM3 LM2>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_ldr {
+            bindings = <&leader>
+            key-positions = <LM2 LM1>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_ldrsh {
+            bindings = <leader_sft, >
+            key-positions = <LM2 LM1>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
 
-ZMK_COMBO(cut,   &hml LS(LCTRL) LG(X), LB3 LB1, DEF CDH NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(copy,  &hml LG(LCTRL) LG(C), LB3 LB2, DEF CDH NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(paste, &hml LS(LGUI)  LG(V), LB2 LB1, DEF CDH NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+        combo_cut {
+            bindings = <&hml LS(LCTRL) LG(>
+            key-positions = <LB3 LB>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_copy {
+            bindings = <&hml LG(LCTRL) LG(>
+            key-positions = <LB3 LB>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_paste {
+            bindings = <hml LS(LGUI)  LG(>
+            key-positions = <LB2 LB>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
 
-/* Horizontal combos - right hand */
-ZMK_COMBO(bspc,  &kp BSPC,     RT1 RT2,         DEF CDH NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(del,   &kp DEL,      RT2 RT3,         DEF CDH NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+        /* Horizontal combos - right hand */
+        combo_bspc {
+            bindings = <&kp BSPC>
+            key-positions = <RT1 RT2>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_del {
+            bindings = <&kp DEL>
+            key-positions = <RT2 RT3>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
 
-ZMK_COMBO(lpar,  &lpar_lt,     RM1 RM2,         DEF CDH     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(rpar,  &rpar_gt,     RM2 RM3,         DEF CDH     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(lt,    &kp LT,       RM1 RM2,             NAV        , COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(gt,    &kp GT,       RM2 RM3,             NAV        , COMBO_TERM_FAST, COMBO_IDLE_FAST)
+        combo_lpar {
+            bindings = <&lpar_lt>;
+            key-positions = <RM1 RM2>;
+            layers = <DEF CDH NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_rpar {
+            bindings = <&rpar_gt>;
+            key-positions = <RM2 RM3>;
+            layers = <DEF CDH NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_lt {
+            bindings = <&kp LT>;
+            key-positions = <RM1 RM2>;
+            layers = <NAV>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_gt {
+            bindings = <&kp GT>;
+            key-positions = <RM2 RM3>;
+            layers = <NAV>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
 
-ZMK_COMBO(lbkt,  &hmr LS(LGUI) LBKT,  RB1 RB2,  DEF CDH     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(rbkt,  &hmr LG(LCTRL) RBKT, RB2 RB3,  DEF CDH     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(lbrc,  &kp LBRC,     RB1 RB2,             NAV        , COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(rbrc,  &kp RBRC,     RB2 RB3,             NAV        , COMBO_TERM_FAST, COMBO_IDLE_FAST)
+        combo_lbkt {
+            bindings = <&hmr LS(LGUI) LBKT>;
+            key-positions = <RB1 RB2>;
+            layers = <DEF CDH NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_rbkt {
+            bindings = <&hmr LG(LCTRL) RBKT>;
+            key-positions = <RB2 RB3>;
+            layers = <DEF CDH NUM>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_lbrc {
+            bindings = <&kp LBRC>;
+            key-positions = <RB1 RB2>;
+            layers = <NAV>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
+        combo_rbrc {
+            bindings = <&kp RBRC>;
+            key-positions = <RB2 RB3>;
+            layers = <NAV>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
 
-/* Vertical combos - left hand */
-ZMK_COMBO(at,    &kp AT,       LT3 LM3,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(hash,  &kp HASH,     LT2 LM2,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(dllr,  &kp DLLR,     LT1 LM1,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(prcnt, &kp PRCNT,    LT0 LM0,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+        /* Vertical combos - left hand */
+        combo_at {
+            bindings = <&kp AT>
+            key-positions = <LT3 LM3>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_hash {
+            bindings = <&kp HASH>
+            key-positions = <LT2 LM2>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_dllr {
+            bindings = <&kp DLLR>
+            key-positions = <LT1 LM1>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_prcnt {
+            bindings = <kp PRCNT>
+            key-positions = <LT0 LM0>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
 
-ZMK_COMBO(grave, &kp GRAVE,    LM3 LB3,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(bslh,  &kp BSLH,     LM2 LB2,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(equal, &kp EQUAL,    LM1 LB1,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(tilde, &kp TILDE,    LM0 LB0,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+        combo_grave {
+            bindings = <kp GRAVE>
+            key-positions = <LM3 LB3>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_bslh {
+            bindings = <&kp BSLH>
+            key-positions = <LM2 LB2>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_equal {
+            bindings = <kp EQUAL>
+            key-positions = <LM1 LB1>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_tilde {
+            bindings = <kp TILDE>
+            key-positions = <LM0 LB0>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
 
-/* Vertical combos - right hand */
-ZMK_COMBO(caret, &kp CARET,    RT0 RM0,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(plus,  &kp PLUS,     RT1 RM1,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(star,  &kp STAR,     RT2 RM2,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(amps,  &kp AMPS,     RT3 RM3,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+        /* Vertical combos - right hand */
+        combo_caret {
+            bindings = <kp CARET>
+            key-positions = <RT0 RM0>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_plus {
+            bindings = <&kp PLUS>
+            key-positions = <RT1 RM1>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_star {
+            bindings = <&kp STAR>
+            key-positions = <RT2 RM2>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_amps {
+            bindings = <&kp AMPS>
+            key-positions = <RT3 RM3>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
 
-ZMK_COMBO(under, &kp UNDER,    RM0 RB0,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(minus, &kp MINUS,    RM1 RB1,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(fslh,  &kp FSLH,     RM2 RB2,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(pipe,  &kp PIPE,     RM3 RB3,         DEF CDH NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+        combo_under {
+            bindings = <kp UNDER>
+            key-positions = <RM0 RB0>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_minus {
+            bindings = <kp MINUS>
+            key-positions = <RM1 RB1>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_fslh {
+            bindings = <&kp FSLH>
+            key-positions = <RM2 RB2>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+        combo_pipe {
+            bindings = <&kp PIPE>
+            key-positions = <RM3 RB3>;
+            layers = <DEF CDH NAV NUM>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        };
+    };
+};
