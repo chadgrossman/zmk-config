@@ -71,9 +71,6 @@ MAKE_HRM(hmr_emorph, &kp, &qexcl, KEYS_L THUMBS)       // qexcl HRMs.
 
 &mt { MT_CORE };
 
-ZMK_HOLD_TAP(mt_home, bindings = <&masked_home>, <&kp>; MT_CORE)
-ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
-
 #define NAV_LEFT  &kp HOME     LEFT  // Tap: left  | Long-tap: start of line.
 #define NAV_RIGHT &kp END      RIGHT // Tap: right | Long-tap: end   of line.
 #define NAV_UP    &mt LG(UP)   UP    // Tap: up    | Long-tap: start of doc.
