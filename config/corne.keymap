@@ -346,7 +346,7 @@
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
         combo_paste {
-            bindings = <hml LS(LGUI)  LG(V)>;
+            bindings = <&hml LS(LGUI) LG(V)>;
             key-positions = <LB2 LB1>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_FAST>;
