@@ -152,77 +152,78 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 #define DSK_NEXT  &kp LC(RIGHT)        // Next     desktop.
 #define TERMINAL  &hmr LSHFT LC(GRAVE) // Terminal.
 
-
     /* Keymap */
 
 ZMK_CONDITIONAL_LAYER(sys, FUN NUM, SYS) // FUN + NUM --> SYS.
 
-keymap {
-    compatible = "zmk,keymap";
+/ {
+    keymap {
+        compatible = "zmk,keymap";
 
-    def {
-        bindings = <
-&kp TAB  &kp Q        &kp W         &kp E        &kp R          &kp T            &kp Y         &kp U         &kp I               &kp O                &kp P               &kp BACKSPACE
-&kp ESC  &kp A        &kp S         &kp D        &kp F          &kp G            &kp H         &kp J         &kp K               &kp L                &kp SQT             &kp SEMICOLON
-&trans   &hml LALT Z  &hml LCTRL X  &hml LGUI C  &hml LSHFT V   &kp B            &kp N         &hmr RSHFT M  &hmr_cmorph LGUI 0  &hmr_dmorph LCTRL 0  &hmr_emorph LALT 0  &trans       
-                                    &trans       &lt FUN ENTER  &lt_spc NAV 0    MAGIC_SHIFT   SMART_NUM     &trans
-        >;
+        def {
+            bindings = <
+    &kp TAB  &kp Q        &kp W         &kp E        &kp R          &kp T            &kp Y         &kp U         &kp I               &kp O                &kp P               &kp BACKSPACE
+    &kp ESC  &kp A        &kp S         &kp D        &kp F          &kp G            &kp H         &kp J         &kp K               &kp L                &kp SQT             &kp SEMICOLON
+    &trans   &hml LALT Z  &hml LCTRL X  &hml LGUI C  &hml LSHFT V   &kp B            &kp N         &hmr RSHFT M  &hmr_cmorph LGUI 0  &hmr_dmorph LCTRL 0  &hmr_emorph LALT 0  &trans       
+                                        &trans       &lt FUN ENTER  &lt_spc NAV 0    MAGIC_SHIFT   SMART_NUM     &trans
+            >;
 
-        label = "Qwerty";
-    };
+            label = "Qwerty";
+        };
 
-    cdh {
-        bindings = <
-&kp TAB  &kp Q        &kp W         &kp F        &kp P          &kp B            &kp J        &kp L         &kp U               &kp Y                &kp SQT             &kp BACKSPACE
-&kp ESC  &kp A        &kp R         &kp S        &kp T          &kp G            &kp M        &kp N         &kp E               &kp I                &kp O               &kp SEMICOLON
-&trans   &hml LALT Z  &hml LCTRL X  &hml LGUI C  &hml LSHFT D   &kp V            &kp K        &hmr RSHFT H  &hmr_cmorph LGUI 0  &hmr_dmorph LCTRL 0  &hmr_emorph LALT 0  &trans       
-                                    &trans       &lt FUN ENTER  &lt NAV SPACE    MAGIC_SHIFT  SMART_NUM     &trans
-        >;
+        cdh {
+            bindings = <
+    &kp TAB  &kp Q        &kp W         &kp F        &kp P          &kp B            &kp J        &kp L         &kp U               &kp Y                &kp SQT             &kp BACKSPACE
+    &kp ESC  &kp A        &kp R         &kp S        &kp T          &kp G            &kp M        &kp N         &kp E               &kp I                &kp O               &kp SEMICOLON
+    &trans   &hml LALT Z  &hml LCTRL X  &hml LGUI C  &hml LSHFT D   &kp V            &kp K        &hmr RSHFT H  &hmr_cmorph LGUI 0  &hmr_dmorph LCTRL 0  &hmr_emorph LALT 0  &trans       
+                                        &trans       &lt FUN ENTER  &lt NAV SPACE    MAGIC_SHIFT  SMART_NUM     &trans
+            >;
 
-        label = "Colemak";
-    };
+            label = "Colemak";
+        };
 
-    nav {
-        bindings = <
-&trans  &trans    &trans     &trans    &kp LG(TAB)  &trans    &kp PG_UP     NAV_BSPC  NAV_UP    NAV_DEL    &trans   &trans
-&trans  &trans    &trans     &trans    &trans       &trans    &kp PG_DN     NAV_LEFT  NAV_DOWN  NAV_RIGHT  &kp RET  &trans
-&trans  &sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT    &trans    &kp INS       &kp TAB   &trans    &trans     &trans   &trans
-                             &trans    &trans       &trans    &kp K_CANCEL  &trans    &trans
-        >;
+        nav {
+            bindings = <
+    &trans  &trans    &trans     &trans    &kp LG(TAB)  &trans    &kp PG_UP     NAV_BSPC  NAV_UP    NAV_DEL    &trans   &trans
+    &trans  &trans    &trans     &trans    &trans       &trans    &kp PG_DN     NAV_LEFT  NAV_DOWN  NAV_RIGHT  &kp RET  &trans
+    &trans  &sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT    &trans    &kp INS       &kp TAB   &trans    &trans     &trans   &trans
+                                &trans    &trans       &trans    &kp K_CANCEL  &trans    &trans
+            >;
 
-        label = "Magic";
-    };
+            label = "Magic";
+        };
 
-    fun {
-        bindings = <
-&trans  &kp F12        &kp F7        &kp F8        &kp F9         &trans    &trans    &kp C_PREV  &kp C_VOL_UP  &kp C_NEXT  &trans  &trans
-&trans  &kp F11        &kp F4        &kp F5        &kp F6         &trans    &trans    DSK_PREV    &kp C_VOL_DN  DSK_NEXT    &trans  &trans
-&trans  &hml LALT F10  &hml LCTL F1  &hml LGUI F2  &hml LSHFT F3  &trans    &trans    TERMINAL    &trans        &trans      &trans  &trans
-                                     &trans        &trans         &trans    &kp C_PP  &kp C_MUTE  &trans
-        >;
+        fun {
+            bindings = <
+    &trans  &kp F12        &kp F7        &kp F8        &kp F9         &trans    &trans    &kp C_PREV  &kp C_VOL_UP  &kp C_NEXT  &trans  &trans
+    &trans  &kp F11        &kp F4        &kp F5        &kp F6         &trans    &trans    DSK_PREV    &kp C_VOL_DN  DSK_NEXT    &trans  &trans
+    &trans  &hml LALT F10  &hml LCTL F1  &hml LGUI F2  &hml LSHFT F3  &trans    &trans    TERMINAL    &trans        &trans      &trans  &trans
+                                        &trans        &trans         &trans    &kp C_PP  &kp C_MUTE  &trans
+            >;
 
-        label = "Function";
-    };
+            label = "Function";
+        };
 
-    num {
-        bindings = <
-&trans  &trans    &kp N7         &kp N8        &kp N9         &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp N0    &kp N4         &kp N5        &kp N6         &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp LALT  &hml LCTRL N1  &hml LGUI N2  &hml LSHFT N3  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                                 &trans        &trans         &trans    &trans  &trans  &trans
-        >;
+        num {
+            bindings = <
+    &trans  &trans    &kp N7         &kp N8        &kp N9         &trans    &trans  &trans  &trans  &trans  &trans  &trans
+    &trans  &kp N0    &kp N4         &kp N5        &kp N6         &trans    &trans  &trans  &trans  &trans  &trans  &trans
+    &trans  &kp LALT  &hml LCTRL N1  &hml LGUI N2  &hml LSHFT N3  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                                    &trans        &trans         &trans    &trans  &trans  &trans
+            >;
 
-        label = "Number";
-    };
+            label = "Number";
+        };
 
-    sys {
-        bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans       &to DEF  &to CDH  &trans  &trans  &trans
-&trans      &trans        &trans        &trans        &trans        &bootloader     &bootloader  &trans   &trans   &trans  &trans  &trans
-&trans      &trans        &trans        &trans        &trans        &sys_reset      &sys_reset   &trans   &trans   &trans  &trans  &trans
-                                        &trans        &trans        &trans          &trans       &trans   &trans
-        >;
+        sys {
+            bindings = <
+    &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans       &to DEF  &to CDH  &trans  &trans  &trans
+    &trans      &trans        &trans        &trans        &trans        &bootloader     &bootloader  &trans   &trans   &trans  &trans  &trans
+    &trans      &trans        &trans        &trans        &trans        &sys_reset      &sys_reset   &trans   &trans   &trans  &trans  &trans
+                                            &trans        &trans        &trans          &trans       &trans   &trans
+            >;
 
-        label = "System";
+            label = "System";
+        };
     };
 };
