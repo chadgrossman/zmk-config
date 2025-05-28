@@ -161,8 +161,8 @@
         spc_morph: spc_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <(MOD_LSFT | MOD_RSFT)>;
-            bindings = <&kp SPACE, &dot_spc>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&kp SPACE>, <&dot_spc>;
         };
         dot_spc: dot_spc {
             compatible = "zmk,behavior-macro";
@@ -243,50 +243,50 @@
         comma_morph: comma_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <(MOD_LSFT | MOD_RSFT)>;
-            bindings = <&kp COMMA, &comma_inner_morph>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&kp COMMA>, <&comma_inner_morph>;
         }
         comma_inner_morph: comma_inner_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <(MOD_LGUI | MOD_RGUI)>;
-            bindings = <&kp SEMICOLON, &kp LESS_THAN>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+            bindings = <&kp SEMICOLON>, <&kp LESS_THAN>;
         }
 
         // Tap: dot | Shift + tap: colon | Ctrl + shift + tap: >.
         dot_morph: dot_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <(MOD_LSFT | MOD_RSFT)>;
-            bindings = <&kp DOT, &dot_inner_morph>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&kp DOT>, <&dot_inner_morph>;
         }
         dot_inner_morph: dot_inner_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <(MOD_LGUI | MOD_RGUI)>;
-            bindings = <&kp COLON, &kp GREATER_THAN>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+            bindings = <&kp COLON>, <&kp GREATER_THAN>;
         }
 
         // Tap: excl | Shift + tap: qmark.
         qexcl: qexcl {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <(MOD_LSFT | MOD_RSFT)>;
-            bindings = <&kp EXCL, &kp QMARK>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&kp EXCL>, <&kp QMARK>;
         }
 
         // Tap: left/right parenthesis | Shft + tap: less-than/greater-than.
         lpar_lt: lpar_lt {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <(MOD_LSFT | MOD_RSFT)>;
-            bindings = <&kp LPAR, &kp LT>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&kp LPAR>, <&kp LT>;
         }
         rpar_gt: rpar_gt {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <(MOD_LSFT | MOD_RSFT)>;
-            bindings = <&kp RPAR, &kp GT>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&kp RPAR>, <&kp GT>;
         }
     };
 
