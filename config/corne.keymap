@@ -17,6 +17,12 @@
 #define TAPPING_TERM_MS 280
 #define QUICK_TAP_MS    175
 
+#define COMBO_TERM_FAST 18
+#define COMBO_TERM_SLOW 30
+
+#define COMBO_IDLE_FAST 150
+#define COMBO_IDLE_SLOW 50
+
 &sk {
     release-after-ms = <900>;
     quick-release;
