@@ -450,7 +450,7 @@
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
         combo_prcnt {
-            bindings = <kp PRCNT>;
+            bindings = <&kp PRCNT>;
             key-positions = <LT0 LM0>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_SLOW>;
@@ -458,7 +458,7 @@
         };
 
         combo_grave {
-            bindings = <kp GRAVE>;
+            bindings = <&kp GRAVE>;
             key-positions = <LM3 LB3>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_SLOW>;
@@ -472,14 +472,14 @@
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
         combo_equal {
-            bindings = <kp EQUAL>;
+            bindings = <&kp EQUAL>;
             key-positions = <LM1 LB1>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
         combo_tilde {
-            bindings = <kp TILDE>;
+            bindings = <&kp TILDE>;
             key-positions = <LM0 LB0>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_SLOW>;
@@ -488,7 +488,7 @@
 
         /* Vertical combos - right hand */
         combo_caret {
-            bindings = <kp CARET>;
+            bindings = <&kp CARET>;
             key-positions = <RT0 RM0>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_SLOW>;
@@ -517,14 +517,14 @@
         };
 
         combo_under {
-            bindings = <kp UNDER>;
+            bindings = <&kp UNDER>;
             key-positions = <RM0 RB0>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
         combo_minus {
-            bindings = <kp MINUS>;
+            bindings = <&kp MINUS>;
             key-positions = <RM1 RB1>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_SLOW>;
