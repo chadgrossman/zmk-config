@@ -100,11 +100,11 @@ ZMK_ADAPTIVE_KEY(
   /delete-property/ ignore-modifiers;
 };
 
-// Tap: num-word | double-tap: sticky num-layer | Hold: num-layer.
+// Tap: sticky num-layer | double-tap: num-word | Hold: num-layer.
 #define SMART_NUM &smart_num NUM 0
 ZMK_HOLD_TAP(smart_num, bindings = <&mo>, <&num_dance>; flavor = "balanced";
              tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
-ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>;
+ZMK_TAP_DANCE(num_dance, bindings = <&sl NUM>, <&num_word NUM>;
               tapping-term-ms = <200>;)
 
 /* Custom behaviors */
@@ -148,11 +148,9 @@ ZMK_TAP_DANCE(copy_cut, bindings = <&kp LG(C)>, <&kp LG(X)>;
 ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 
 // Misc aliases. [TODO: clean up]
-#define CANCEL    &kp K_CANCEL        // Cancel caps-word & auto-layers.
-#define DSK_PREV  &kp LC(LEFT)        // Previous desktop.
-#define DSK_NEXT  &kp LC(RIGHT)       // Next     desktop.
-#define TERMINAL  &hmr LGUI LC(GRAVE) // Terminal.
-#define VOL_DOWN  &kp C_VOL_DN
+#define DSK_PREV  &kp LC(LEFT)         // Previous desktop.
+#define DSK_NEXT  &kp LC(RIGHT)        // Next     desktop.
+#define TERMINAL  &hmr LSHFT LC(GRAVE) // Terminal.
 
 
     /* Keymap */
@@ -178,7 +176,7 @@ ZMK_BASE_LAYER(Colemak,
                                     &trans       &lt FN ENTER  &lt NAV SPACE,    MAGIC_SHIFT  SMART_NUM     &trans
 )
 
-ZMK_BASE_LAYER(Navi,
+ZMK_BASE_LAYER(Magic,
 &trans  &trans    &trans     &trans    &kp LG(TAB)  &trans,    &kp PG_UP   NAV_BSPC  NAV_UP    NAV_DEL    &trans   &trans,
 &trans  &trans    &trans     &trans    &trans       &trans,    &kp PG_DN   NAV_LEFT  NAV_DOWN  NAV_RIGHT  &kp RET  &trans,
 &trans  &sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT    &trans,    &kp INS     &kp TAB   &trans    &trans     &trans   &trans,
@@ -187,7 +185,7 @@ ZMK_BASE_LAYER(Navi,
 
 ZMK_BASE_LAYER(Function, \
 &trans  &kp F12        &kp F7        &kp F8        &kp F9         &trans,    &trans    &kp C_PREV  &kp C_VOL_UP  &kp C_NEXT  &trans  &trans,
-&trans  &kp F11        &kp F4        &kp F5        &kp F6         &trans,    &trans    DSK_PREV    VOL_DOWN      DSK_NEXT    &trans  &trans,
+&trans  &kp F11        &kp F4        &kp F5        &kp F6         &trans,    &trans    DSK_PREV    &kp C_VOL_DN  DSK_NEXT    &trans  &trans,
 &trans  &hml LALT F10  &hml LCTL F1  &hml LGUI F2  &hml LSHFT F3  &trans,    &trans    TERMINAL    &trans        &trans      &trans  &trans,
                                      &trans        &trans         &trans,    &kp C_PP  &kp C_MUTE  &trans
 )
@@ -196,7 +194,7 @@ ZMK_BASE_LAYER(Number,
 &trans  &trans    &kp N7         &kp N8        &kp N9         &trans,    &trans  &trans  &trans  &trans  &trans  &trans,
 &trans  &kp N0    &kp N4         &kp N5        &kp N6         &trans,    &trans  &trans  &trans  &trans  &trans  &trans,
 &trans  &kp LALT  &hml LCTRL N1  &hml LGUI N2  &hml LSHFT N3  &trans,    &trans  &trans  &trans  &trans  &trans  &trans,
-                                 &trans        &trans         &trans,    &trans  &trans  &trans \
+                                 &trans        &trans         &trans,    &trans  &trans  &trans
 )
 
 ZMK_BASE_LAYER(System,
