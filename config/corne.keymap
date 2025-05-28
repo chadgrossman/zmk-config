@@ -56,8 +56,8 @@
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5
 #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2
 
-#include "greek.dtsi"
-#include "leader.dtsi"
+// #include "greek.dtsi"
+// #include "leader.dtsi"
 
 /* Nav cluster */
 
@@ -234,11 +234,11 @@
         };
 
         // Sticky shift + leader.
-        leader_sft: leader_sft {
+        /* leader_sft: leader_sft {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&sk LSHFT &leader>;
-        };
+        }; */
 
         // Tap: comma | Shift + tap: semicolon | Ctrl + shift + tap: <.
         comma_morph: comma_morph {
@@ -317,7 +317,7 @@
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
-        combo_ldr {
+        /* combo_ldr {
             bindings = <&leader>;
             key-positions = <LM2 LM1>;
             layers = <DEF CDH NAV NUM>;
@@ -330,7 +330,7 @@
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
-        };
+        }; */
 
         combo_cut {
             bindings = <&hml LS(LCTRL) LG(X)>;
