@@ -161,7 +161,7 @@
         spc_morph: spc_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <MOD_LSFT | MOD_RSFT>;
+            mods = <(MOD_LSFT | MOD_RSFT)>;
             bindings = <&kp SPACE, &dot_spc>;
         };
         dot_spc: dot_spc {
@@ -221,7 +221,7 @@
             #binding-cells = <0>;
             bindings = <&kp BSPC>, <&kp DEL>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
-            keep-mods = <MOD_RSFT>;
+            keep-mods = <(MOD_RSFT)>;
         };
 
         // Tap: copy | double-tap: cut.
@@ -243,13 +243,13 @@
         comma_morph: comma_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <MOD_LSFT | MOD_RSFT>;
+            mods = <(MOD_LSFT | MOD_RSFT)>;
             bindings = <&kp COMMA, &comma_inner_morph>;
         }
         comma_inner_morph: comma_inner_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <MOD_LGUI | MOD_RGUI>;
+            mods = <(MOD_LGUI | MOD_RGUI)>;
             bindings = <&kp SEMICOLON, &kp LESS_THAN>;
         }
 
@@ -257,13 +257,13 @@
         dot_morph: dot_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <MOD_LSFT | MOD_RSFT>;
+            mods = <(MOD_LSFT | MOD_RSFT)>;
             bindings = <&kp DOT, &dot_inner_morph>;
         }
         dot_inner_morph: dot_inner_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <MOD_LGUI | MOD_RGUI>;
+            mods = <(MOD_LGUI | MOD_RGUI)>;
             bindings = <&kp COLON, &kp GREATER_THAN>;
         }
 
@@ -271,7 +271,7 @@
         qexcl: qexcl {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <MOD_LSFT | MOD_RSFT>;
+            mods = <(MOD_LSFT | MOD_RSFT)>;
             bindings = <&kp EXCL, &kp QMARK>;
         }
 
@@ -279,13 +279,13 @@
         lpar_lt: lpar_lt {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <MOD_LSFT | MOD_RSFT>;
+            mods = <(MOD_LSFT | MOD_RSFT)>;
             bindings = <&kp LPAR, &kp LT>;
         }
         rpar_gt: rpar_gt {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <MOD_LSFT | MOD_RSFT>;
+            mods = <(MOD_LSFT | MOD_RSFT)>;
             bindings = <&kp RPAR, &kp GT>;
         }
     };
