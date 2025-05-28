@@ -171,13 +171,13 @@ ZMK_BASE_LAYER(Qwerty,
 &kp TAB  &kp Q        &kp W         &kp E        &kp R         &kp T        ,    &kp Y         &kp U         &kp I               &kp O                &kp P               &kp BACKSPACE,
 &kp ESC  &kp A        &kp S         &kp D        &kp F         &kp G        ,    &kp H         &kp J         &kp K               &kp L                &kp SQT             &kp SEMICOLON,
 &trans   &hml LALT Z  &hml LCTRL X  &hml LGUI C  &hml LSHFT V  &kp B        ,    &kp N         &hmr RSHFT M  &hmr_cmorph LGUI 0  &hmr_dmorph LCTRL 0  &hmr_emorph LALT 0  &trans       ,
-                                    &trans       &lt FN ENTER  &lt NAV SPACE,    MAGIC_SHIFT  SMART_NUM     &trans
+                                    &trans       &lt FN ENTER  &lt NAV SPACE,    MAGIC_SHIFT   SMART_NUM     &trans
 )
 
 ZMK_BASE_LAYER(Colemak,
-&kp TAB  &kp Q        &kp W         &kp F        &kp P         &kp B        ,    &kp J         &kp L         &kp U               &kp Y                &kp SQT             &kp BACKSPACE,
-&kp ESC  &kp A        &kp R         &kp S        &kp T         &kp G        ,    &kp M         &kp N         &kp E               &kp I                &kp O               &kp SEMICOLON,
-&trans   &hml LALT Z  &hml LCTRL X  &hml LGUI C  &hml LSHFT D  &kp V        ,    &kp K         &hmr RSHFT H  &hmr_cmorph LGUI 0  &hmr_dmorph LCTRL 0  &hmr_emorph LALT 0  &trans       ,
+&kp TAB  &kp Q        &kp W         &kp F        &kp P         &kp B        ,    &kp J        &kp L         &kp U               &kp Y                &kp SQT             &kp BACKSPACE,
+&kp ESC  &kp A        &kp R         &kp S        &kp T         &kp G        ,    &kp M        &kp N         &kp E               &kp I                &kp O               &kp SEMICOLON,
+&trans   &hml LALT Z  &hml LCTRL X  &hml LGUI C  &hml LSHFT D  &kp V        ,    &kp K        &hmr RSHFT H  &hmr_cmorph LGUI 0  &hmr_dmorph LCTRL 0  &hmr_emorph LALT 0  &trans       ,
                                     &trans       &lt FN ENTER  &lt NAV SPACE,    MAGIC_SHIFT  SMART_NUM     &trans
 )
 
@@ -191,7 +191,7 @@ ZMK_BASE_LAYER(Magic,
 ZMK_BASE_LAYER(Function, \
 &trans  &kp F12        &kp F7        &kp F8        &kp F9         &trans,    &trans    &kp C_PREV  &kp C_VOL_UP  &kp C_NEXT  &trans  &trans,
 &trans  &kp F11        &kp F4        &kp F5        &kp F6         &trans,    &trans    DSK_PREV    VOL_DOWN      DSK_NEXT    &trans  &trans,
-&trans  &hml LALT F10  &hml LCTL F1  &hml LGUI F2  &hml LSHFT F3  &trans,    &trans    &TERMINAL   &trans        &trans      &trans  &trans,
+&trans  &hml LALT F10  &hml LCTL F1  &hml LGUI F2  &hml LSHFT F3  &trans,    &trans    TERMINAL    &trans        &trans      &trans  &trans,
                                      &trans        &trans         &trans,    &kp C_PP  &kp C_MUTE  &trans
 )
 
