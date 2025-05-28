@@ -11,7 +11,7 @@
 #define DEF 0
 #define CDH 1
 #define NAV 2
-#define FN 3
+#define FN  3
 #define NUM 4
 #define SYS 5
 
@@ -141,7 +141,7 @@ ZMK_MOD_MORPH(bs_del, bindings = <&kp BSPC>, <&kp DEL>;
               mods = <(MOD_LSFT|MOD_RSFT)>; keep-mods = <MOD_RSFT>;)
 
 // Tap: copy | double-tap: cut.
-ZMK_TAP_DANCE(copy_cut, bindings = <&kp LC(INS)>, <&kp LC(X)>;
+ZMK_TAP_DANCE(copy_cut, bindings = <&kp LG(C)>, <&kp LG(X)>;
               tapping-term-ms = <200>;)
 
 // Sticky shift + leader.
