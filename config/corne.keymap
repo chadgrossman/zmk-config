@@ -333,21 +333,21 @@
 
         combo_cut {
             bindings = <&hml LS(LCTRL) LG(X)>;
-            key-positions = <LB3 LB>;
+            key-positions = <LB3 LB1>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
         combo_copy {
             bindings = <&hml LG(LCTRL) LG(C)>;
-            key-positions = <LB3 LB>;
+            key-positions = <LB3 LB2>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
         combo_paste {
             bindings = <hml LS(LGUI)  LG(V)>;
-            key-positions = <LB2 LB>;
+            key-positions = <LB2 LB1>;
             layers = <DEF CDH NAV NUM>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
