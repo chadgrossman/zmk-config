@@ -181,12 +181,10 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 
 // Misc aliases. [TODO: clean up]
 #define CANCEL    &kp K_CANCEL            // Cancel caps-word & auto-layers.
-#define DSK_PREV  &hmr LSHFT LC(LEFT)     // Previous desktop.
-#define DSK_NEXT  &hmr LCTRL LC(RIGHT)    // Next     desktop.
-#define PIN_WIN   &kp LG(LC(LS(Q)))       // Pin window across desktops.
-#define PIN_APP   &kp LG(LC(LS(A)))       // Pin application across desktops.
+#define DSK_APP   &hmr LSHFT LC(DOWN)     // Application windows.
+#define DSK_ALL   &hmr LGUI  LC(UP)       // Mission Control.
+#define DSK_NEXT  &hmr LCTRL LC(RIGHT)    // Next desktop.
 #define DSK_MGR   &kp LC(GRAVE)           // Terminal.
-#define VOL_DOWN  &hmr LGUI C_VOL_DN
 
 /* Keymap */
 
@@ -211,11 +209,11 @@ ZMK_BASE_LAYER(Base,
 
 ZMK_BASE_LAYER(Nav,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp LG(Q)     ___           &kp LS(TAB)   &swapper      ___         ,   &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___         ,
+    &kp LG(Q)     ___           &kp LS(TAB)   &swapper      ___         ,   ___           NAV_BSPC      &kp TAB       NAV_DEL       ___         ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &sk LALT      &sk LCTRL      &sk LGUI     &sk LSHFT     ___         ,   &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET     ,
+    &sk LALT      &sk LCTRL      &sk LGUI     &sk LSHFT     ___         ,   NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET     ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           ___           ___           ___         ,   &kp INS       &kp TAB       ___           ___           ___         ,
+    ___           ___           ___           ___           ___         ,   &kp INS       &kp PG_UP     &kp PG_DN     ___           ___         ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               ___           ___         ,   CANCEL        ___
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
@@ -223,11 +221,11 @@ ZMK_BASE_LAYER(Nav,
 
 ZMK_BASE_LAYER(Fn,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp F12       &kp F7        &kp F8        &kp F9        ___         ,   ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    ___         ,
+    &kp F12       &kp F7        &kp F8        &kp F9        ___         ,   ___           &kp C_PREV    ___           &kp C_NEXT    ___         ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &hml LALT F11 &hml LCTRL F4 &hml LGUI F5  &hml LSHFT F6 ___         ,   ___           DSK_PREV      VOL_DOWN      DSK_NEXT      ___         ,
+    &hml LALT F11 &hml LCTRL F4 &hml LGUI F5  &hml LSHFT F6 ___         ,   &kp LC(LEFT)  DSK_APP       DSK_ALL       DSK_NEXT      ___         ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp F10       &kp F1        &kp F2        &kp F3        ___         ,   PIN_APP       PIN_WIN       DSK_MGR       ___           ___         ,
+    &kp F10       &kp F1        &kp F2        &kp F3        ___         ,   ___           &kp C_VOL_DN  DSK_MGR       &kp C_VOL_UP  ___         ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               ___           ___         ,   &kp C_MUTE    &kp C_PP
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
