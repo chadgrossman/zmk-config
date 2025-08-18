@@ -2,10 +2,10 @@
 #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                   \
     ZMK_LAYER(                                                                 \
         name,                                                                  \
-        &none            LT RT &none                                           \
-        &none            LM RM &none                                           \
-        &none            LB RB &none                                           \
-        &sk LS(LC(LALT)) LH RH &smart_mouse                                    \
+            LT &none            &none        RT                                \
+            LM &none            &none        RM                                \
+            LB &none            &none        RB                                \
+            LH &sk LS(LC(LALT)) &smart_mouse RH                                \
     )
 
 #include "42.h"
