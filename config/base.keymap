@@ -96,8 +96,8 @@ ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 #define MASK_MODS(NAME, MODS, BINDING)                                         \
   ZMK_MOD_MORPH(NAME, bindings = <BINDING>, <BINDING>; mods = <MODS>;)
 
-MASK_MODS(masked_home, (MOD_LGUI), &kp HOME)
-MASK_MODS(masked_end,  (MOD_LGUI), &kp END)
+MASK_MODS(masked_home, (MOD_LGUI), &kp LG(LEFT))
+MASK_MODS(masked_end,  (MOD_LGUI), &kp LG(RIGHT))
 
 /* Magic-shift & auto-layers */
 
