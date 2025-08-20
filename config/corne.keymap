@@ -326,7 +326,13 @@
       timeout-ms = <COMBO_TERM_FAST>;
       require-prior-idle-ms = <COMBO_IDLE_FAST>;
     };
-
+    combo_ret {
+      bindings = <&trans>;
+      key-positions = <LT4 LT3>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
     combo_tab {
       bindings = <&hml LC(LGUI) TAB>;
       key-positions = <LM3 LM2>;
