@@ -267,7 +267,7 @@
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
       bindings = <&kp QMARK>, <&kp EXCL>;
-      mods = <(MOD_LGUI | MOD_RGUI)>;
+      mods = <(MOD_LSFT | MOD_RSFT)>;
     };
 
     // Tap: left/right parenthesis | Shft + tap: less-than/greater-than.
@@ -296,8 +296,8 @@
     spc_morph: spc_morph {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
       bindings = <&kp SPACE>, <&dot_spc>;
+      mods = <(MOD_LSFT | MOD_RSFT)>;
     };
     dot_spc: dot_spc {
       compatible = "zmk,behavior-macro";
@@ -327,7 +327,7 @@
       require-prior-idle-ms = <COMBO_IDLE_FAST>;
     };
     combo_ret {
-      bindings = <&trans>;
+      bindings = <&none>;
       key-positions = <LT4 LT3>;
       layers = <DEF NAV NUM>;
       timeout-ms = <COMBO_TERM_FAST>;
