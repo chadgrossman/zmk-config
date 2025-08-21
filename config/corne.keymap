@@ -105,22 +105,27 @@
   hold-trigger-key-positions = <0>;
 };
 
-#define NAV_LEFT  &mt_home 0   LEFT  // Tap: left  | Long-tap: start of line.
-#define NAV_RIGHT &mt_end 0    RIGHT // Tap: right | Long-tap: end   of line.
-#define NAV_UP    &mt LG(UP)   UP    // Tap: up    | Long-tap: start of doc.
-#define NAV_DOWN  &mt LG(DOWN) DOWN  // Tap: down  | Long-tap: end   of doc.
-#define NAV_BSPC  &mt LA(BSPC) BSPC  // Tap: bspc  | Long-tap: delete word bwd.
-#define NAV_DEL   &mt LA(DEL)  DEL   // Tap: del   | Long-tap: delete word fwd.
+// Home-row mods
+#define HRGRAVE &hml LALT         GRAVE
+#define HRDLLR  &hml LCTL         DLLR
+#define HRPRCNT &hml LGUI         PRCNT
+#define HRCARET &hml LSHFT        CARET
+#define LTHUMB  &hmt LS(LC(LALT)) DEL
+#define RTHUMB  &hmt LS(LC(LALT)) TAB
 
-#define MEH       &kp LS(LC(LALT))   // Tap:       | Hold:     MEH
+#define NAV_LEFT  &mt_home 0   LEFT     // Tap: left         | Long-tap: start of line.
+#define NAV_RIGHT &mt_end 0    RIGHT    // Tap: right        | Long-tap: end   of line.
+#define NAV_UP    &mt LG(UP)   UP       // Tap: up           | Long-tap: start of doc.
+#define NAV_DOWN  &mt LG(DOWN) DOWN     // Tap: down         | Long-tap: end   of doc.
+#define NAV_BSPC  &mt LG(BSPC) LA(BSPC) // Tap: delete word  | Long-tap: delete line.
+#define NAV_DEL   &mt LG(DEL)  LA(DEL)  // Tap: del word     | Long-tap: delete line fwd.
 
 /* Magic-shift & auto-layers */
 #define SMRT_SHIFT &smrt_shift LSHFT 0
 
-
-
 // Misc aliases. [TODO: clean up]
 #define CANCEL    &kp K_CANCEL            // Cancel caps-word & auto-layers.
+#define TERMNL    &kp LC(GRAVE)           // Open Terminal in VSCode
 #define DSK_APP   &hmr LSHFT LC(DOWN)     // Application windows.
 #define DSK_ALL   &hmr LGUI  LC(UP)       // Mission Control.
 #define DSK_NEXT  &hmr LCTRL LC(RIGHT)    // Next desktop.
@@ -149,6 +154,17 @@
       require-prior-idle-ms = <150>;
       hold-trigger-on-release;
       hold-trigger-key-positions = <KEYS_L THUMBS>;
+    };
+    hmt: hmt {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&kp>;
+      flavor = "balanced";
+      tapping-term-ms = <280>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <150>;
+      hold-trigger-on-release;
+      hold-trigger-key-positions = <KEYS_L KEYS_R>;
     };
     /* hm_combo_leader: hm_combo_leader {
       compatible = "zmk,behavior-hold-tap";
@@ -579,9 +595,9 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp ESC       &hml LALT A   &hml LCTRL S  &hml LGUI D   &hml LSHFT F  &kp G           &kp H         &hmr RSHFT J  &hmr LGUI K   &hmr LCTRL L  &hmr LALT SQT &kp SEMICOLON
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    XXX           &kp Z         &kp X         &kp C         &kp V         &kp B           &kp N         &kp M         &comma_morph  &dot_morph    &qexcl        &kp FSLH
+    TERMNL           &kp Z         &kp X         &kp C         &kp V         &kp B           &kp N         &kp M         &comma_morph  &dot_morph    &qexcl        &kp FSLH
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                              MEH           &lt FN RET    &lt_spc NAV 0   SMRT_SHIFT   &lt NUM BSPC   XXX
+                                              LTHUMB        &lt FN RET    &lt_spc NAV 0   SMRT_SHIFT    &lt NUM BSPC  RTHUMB
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
       >;
 
@@ -589,12 +605,13 @@
     };
     nav {
       bindings = <
+      // \  /
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    ___           &kp LG(Q)     ___           &kp LS(TAB)   &kp LG(TAB)   ___             ___           NAV_BSPC      &kp TAB       NAV_DEL       ___           ___
+    ___           ___           &kp AMPS      &kp STAR      &kp RBKT      &kp BSLH        ___           NAV_BSPC      &kp TAB       NAV_DEL       ___           ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           &sk LALT      &sk LCTRL     &sk LGUI      &sk LSHFT     ___             NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET       ___
+    ___           HRGRAVE       HRDLLR        HRPRCNT       HRCARET       &kp UNDER       NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET       ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           ___           ___           ___           ___             &kp INS       &kp PG_UP     &kp PG_DN     ___           ___           ___
+    ___           &kp TILDE     &kp PIPE      &kp AT        &kp HASH      &kp FSLH        &kp INS       &kp PG_UP     &kp PG_DN     ___           ___           ___
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                               ___           ___           ___             CANCEL        ___           ___
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
@@ -620,11 +637,11 @@
     num {
       bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    ___           ___           &kp N7        &kp N8        &kp N9        ___             ___           ___           ___           ___           ___           ___
+    ___           ___           &kp N7        &kp N8        &kp N9        &kp PLUS        ___           ___           ___           ___           ___           ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           &sk LALT      &hml LCTRL N4 &hml LGUI N5  &hml LSHFT N6 ___             ___           ___           ___           ___           ___           ___
+    ___           &sk LALT      &hml LCTRL N4 &hml LGUI N5  &hml LSHFT N6 &kp MINUS       ___           ___           ___           ___           ___           ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           &kp N1        &kp N2        &kp N3        ___             ___           ___           ___           ___           ___           ___
+    ___           ___           &kp N1        &kp N2        &kp N3        &kp EQUAL       ___           ___           ___           ___           ___           ___
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                               ___           &kp N0        ___             ___           ___           ___
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
