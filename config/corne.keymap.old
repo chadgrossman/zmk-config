@@ -5,7 +5,7 @@
 
 #define DEF 0
 #define NAV 1
-#define SYM 2
+#define FN 2
 #define NUM 3
 #define SYS 4
 
@@ -16,7 +16,7 @@
 
 #define QUICK_TAP_MS 175
 
-#define COMBO_TERM_FAST 22
+#define COMBO_TERM_FAST 18
 #define COMBO_TERM_SLOW 30
 
 #define COMBO_IDLE_FAST 150
@@ -94,6 +94,9 @@
 #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2
 
 /* Nav cluster */
+&caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
+  /delete-property/ ignore-modifiers;
+};
 
 &mt { // Trigger tap-action on all interrupts.
   flavor = "tap-preferred";
@@ -114,10 +117,8 @@
 #define NAV_RIGHT &mt_end 0    RIGHT    // Tap: right        | Long-tap: end   of line.
 #define NAV_UP    &mt LG(UP)   UP       // Tap: up           | Long-tap: start of doc.
 #define NAV_DOWN  &mt LG(DOWN) DOWN     // Tap: down         | Long-tap: end   of doc.
-#define NAV_BACK  &mt LG(BSPC) LA(BSPC) // Tap: delete word  | Long-tap: delete line.
-#define NAV_FORW  &mt LG(DEL)  LA(DEL)  // Tap: del word     | Long-tap: delete line fwd.
-#define NAV_BSPC  &mt LA(BSPC) BSPC     // Tap: backspace    | Long-tap: delete word.
-#define NAV_DEL   &mt LA(DEL)  DEL      // Tap: delete       | Long-tap: delete word fwd.
+#define NAV_BSPC  &mt LG(BSPC) LA(BSPC) // Tap: delete word  | Long-tap: delete line.
+#define NAV_DEL   &mt LG(DEL)  LA(DEL)  // Tap: del word     | Long-tap: delete line fwd.
 
 /* Magic-shift & auto-layers */
 #define SMRT_SHIFT &smrt_shift LSHFT 0
@@ -128,6 +129,7 @@
 #define DSK_APP   &hmr LSHFT LC(DOWN)     // Application windows.
 #define DSK_ALL   &hmr LGUI  LC(UP)       // Mission Control.
 #define DSK_NEXT  &hmr LCTRL LC(RIGHT)    // Next desktop.
+#define DSK_MGR   &hmr LALT  LC(GRAVE)    // Terminal.
 
 / {
   behaviors {
@@ -164,6 +166,17 @@
       hold-trigger-on-release;
       hold-trigger-key-positions = <KEYS_L KEYS_R>;
     };
+    /* hm_combo_leader: hm_combo_leader {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&leader>;
+      flavor = "balanced";
+      tapping-term-ms = <280>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <120>;
+      hold-trigger-on-release;
+      hold-trigger-key-positions = <KEYS_R>;
+    }; */
     hm_combo_lpar: hm_combo_lpar {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
@@ -322,6 +335,35 @@
     compatible = "zmk,combos";
 
     /* Horizontal combos - left hand */
+    combo_esc {
+      bindings = <&kp ESC>;
+      key-positions = <LT3 LT2>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    combo_ret {
+      bindings = <&none>;
+      key-positions = <LT4 LT3>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    combo_tab {
+      bindings = <&hml LC(LGUI) TAB>;
+      key-positions = <LM3 LM2>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    /* combo_ldr {
+      bindings = <&hm_combo_leader LS(LGUI) 0>;
+      key-positions = <LM2 LM1>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    }; */
+
     combo_cut {
       bindings = <&kp LG(X)>;
       key-positions = <LB3 LB1>;
@@ -417,29 +459,145 @@
       timeout-ms = <COMBO_TERM_FAST>;
       require-prior-idle-ms = <COMBO_IDLE_FAST>;
     };
-  };
 
+    /* Vertical combos - left hand */
+    combo_at {
+      bindings = <&kp AT>;
+      key-positions = <LT3 LM3>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_hash {
+      bindings = <&kp HASH>;
+      key-positions = <LT2 LM2>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_dllr {
+      bindings = <&kp DLLR>;
+      key-positions = <LT1 LM1>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_prcnt {
+      bindings = <&kp PRCNT>;
+      key-positions = <LT0 LM0>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+
+    combo_grave {
+      bindings = <&kp GRAVE>;
+      key-positions = <LM3 LB3>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_bslh {
+      bindings = <&kp BSLH>;
+      key-positions = <LM2 LB2>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_equal {
+      bindings = <&kp EQUAL>;
+      key-positions = <LM1 LB1>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_tilde {
+      bindings = <&kp TILDE>;
+      key-positions = <LM0 LB0>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+
+    /* Vertical combos - right hand */
+    combo_caret {
+      bindings = <&kp CARET>;
+      key-positions = <RT0 RM0>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_plus {
+      bindings = <&kp PLUS>;
+      key-positions = <RT1 RM1>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_star {
+      bindings = <&kp STAR>;
+      key-positions = <RT2 RM2>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_amps {
+      bindings = <&kp AMPS>;
+      key-positions = <RT3 RM3>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+
+    combo_under {
+      bindings = <&kp UNDER>;
+      key-positions = <RM0 RB0>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_minus {
+      bindings = <&kp MINUS>;
+      key-positions = <RM1 RB1>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_fslh {
+      bindings = <&kp FSLH>;
+      key-positions = <RM2 RB2>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+    combo_pipe {
+      bindings = <&kp PIPE>;
+      key-positions = <RM3 RB3>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_SLOW>;
+      require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+    };
+  };
   conditional_layers {
     compatible = "zmk,conditional-layers";
     tri_layer_sys {
-      if-layers = <NUM SYM>;
+      if-layers = <FN NUM>;
       then-layer = <SYS>;
     };
   };
-  
   keymap {
     compatible = "zmk,keymap";
 
     def {
       bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp TAB       &kp Q         &kp W         &kp E         &kp R         &kp T           &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BSLH
+    &kp GRAVE     &kp Q         &kp W         &kp E         &kp R         &kp T           &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BSLH
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp ESC       &hml LALT A   &hml LCTRL S  &hml LGUI D   &hml LSHFT F  &kp G           &kp H         &hmr RSHFT J  &hmr LGUI K   &hmr LCTRL L  &hmr LALT SEMI &kp SQT
+    &kp ESC       &hml LALT A   &hml LCTRL S  &hml LGUI D   &hml LSHFT F  &kp G           &kp H         &hmr RSHFT J  &hmr LGUI K   &hmr LCTRL L  &hmr LALT SQT &kp SEMICOLON
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    TERMNL        &kp Z         &kp X         &kp C         &kp V         &kp B           &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH      &qexcl
+    TERMNL        &kp Z         &kp X         &kp C         &kp V         &kp B           &kp N         &kp M         &comma_morph  &dot_morph    &qexcl        &kp FSLH
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                              LTHUMB        &lt SYM RET   &lt_spc NAV 0   SMRT_SHIFT    &lt NUM BSPC  RTHUMB
+                                              LTHUMB        &lt FN RET    &lt_spc NAV 0   SMRT_SHIFT    &lt NUM BSPC  RTHUMB
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
       >;
 
@@ -449,43 +607,43 @@
       bindings = <
       // \  /
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    ___           ___           ___           ___           ___           ___             ___           NAV_BSPC      &kp TAB       NAV_DEL       ___           ___
+    ___           ___           &kp AMPS      &kp STAR      &kp RBKT      &kp BSLH        ___           NAV_BSPC      &kp TAB       NAV_DEL       ___           ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           &sk LALT      &sk LCTRL     &sk LGUI      &sk LSHFT     ___             NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET       ___
+    ___           HRGRAVE       HRDLLR        HRPRCNT       HRCARET       &kp UNDER       NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET       ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           ___           ___           ___           ___             &kp INS       &kp PG_UP     &kp PG_DN     ___           ___           ___
+    ___           &kp TILDE     &kp PIPE      &kp AT        &kp HASH      &kp FSLH        &kp INS       &kp PG_UP     &kp PG_DN     ___           ___           ___
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                              ___           ___           ___             CANCEL        NAV_BACK      NAV_FORW
+                                              ___           ___           ___             CANCEL        ___           ___
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
       >;
 
       label = "Magic";
     };
-    sym {
+    fn {
       bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    ___           &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT       &kp EQUAL     &kp GRAVE     &kp COLON     &kp SEMI      &kp PLUS      ___
+    ___           &kp F12       &kp F7        &kp F8        &kp F9        ___             ___           &kp C_PREV    &kp C_NEXT    ___           ___           ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           &sk LALT      &sk LCTRL     &sk LGUI      &sk LSHFT     &kp CARET       &kp STAR      &kp LPAR      &kp LBRC      &kp LBKT      &kp MINUS     ___
+    ___           &hml LALT F11 &hml LCTRL F4 &hml LGUI F5  &hml LSHFT F6 ___             &kp LC(LEFT)  DSK_APP       DSK_ALL       DSK_NEXT      DSK_MGR       ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           ___           &kp BSLH      &kp PIPE      &kp AMPS        &kp TILDE     &kp RPAR      &kp RBRC      &kp RBKT      &kp UNDER     ___
+    ___           &kp F10       &kp F1        &kp F2        &kp F3        ___             ___           &kp C_VOL_DN  &kp C_VOL_UP  ___           ___           ___
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                               ___           ___           ___             ___           ___           ___
+                                              ___           ___           ___             &kp C_PP      &kp C_MUTE    ___
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
-  >;
-    
-      label = "Symbol";
+      >;
+
+      label = "Function";
     };
     num {
       bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    ___           &kp FSLH      &kp N7        &kp N8        &kp N9        &kp PLUS        ___           ___           ___           ___           ___           ___
-//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────── ──┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           &kp STAR      &kp N7        &kp N8        &kp N9        &kp PLUS        ___           ___           ___           ___           ___           ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     ___           &sk LALT      &hml LCTRL N4 &hml LGUI N5  &hml LSHFT N6 &kp MINUS       ___           ___           ___           ___           ___           ___
-//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────── ──┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           &kp STAR      &kp N1        &kp N2        &kp N3        &kp EQUAL       ___           ___           ___           ___           ___           ___
-//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼────────── ──┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                              &kp DOT       &lt SYM N0    ___             ___           ___           ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           &kp FSLH      &kp N1        &kp N2        &kp N3        &kp EQUAL       ___           ___           ___           ___           ___           ___
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                              &kp DOT       &kp N0        ___             ___           ___           ___
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
       >;
 
@@ -494,11 +652,11 @@
     sys {
       bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR      ___           &kp F7        &kp F8        &kp F9        &kp F10       ___
+    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR      ___           ___           ___           ___           ___           ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           &sk LALT      &sk LCTRL     &sk LGUI      &sk LSHFT     ___             ___           &kp F4        &kp F5        &kp F6        &kp F11       ___
+    ___           ___           ___           ___           ___           &bootloader     &bootloader   ___           ___           ___           ___           ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    ___             ___           &kp F1        &kp F2        &kp F3        &kp F12       ___
+    ___           ___           ___           ___           ___           &sys_reset      &sys_reset    ___           ___           ___           ___           ___
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                               ___           ___           ___             ___           ___           ___
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
