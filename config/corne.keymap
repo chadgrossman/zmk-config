@@ -16,62 +16,6 @@
 
 #define QUICK_TAP_MS 175
 
-#define COMBO_TERM_FAST 22
-#define COMBO_TERM_SLOW 30
-
-#define COMBO_IDLE_FAST 150
-#define COMBO_IDLE_SLOW 50
-
-#define LT0  5  // left-top row
-#define LT1  4
-#define LT2  3
-#define LT3  2
-#define LT4  1
-#define LT5  0
-
-#define RT0  6  // right-top row
-#define RT1  7
-#define RT2  8
-#define RT3  9
-#define RT4 10
-#define RT5 11
-
-#define LM0 17  // left-middle row
-#define LM1 16
-#define LM2 15
-#define LM3 14
-#define LM4 13
-#define LM5 12
-
-#define RM0 18  // right-middle row
-#define RM1 19
-#define RM2 20
-#define RM3 21
-#define RM4 22
-#define RM5 23
-
-#define LB0 29  // left-bottom row
-#define LB1 28
-#define LB2 27
-#define LB3 26
-#define LB4 25
-#define LB5 24
-
-#define RB0 30  // right-bottom row
-#define RB1 31
-#define RB2 32
-#define RB3 33
-#define RB4 34
-#define RB5 35
-
-#define LH0 38  // left thumb keys
-#define LH1 37
-#define LH2 36
-
-#define RH0 39  // right thumb keys
-#define RH1 40
-#define RH2 41
-
 &sk {
   release-after-ms = <900>;
   quick-release;
@@ -89,9 +33,12 @@
 
 /* Homerow mods */
 
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5
-#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2
+#define KEYS_L 5 4 3 2 1 0 17 16 15 14 13 12 29 28 27 26 25 24
+// #define KEYS_L 0 1 2 3 4 10 11 12 13 14 20 21 22 23 24
+#define KEYS_R 6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35
+// #define KEYS_R 5 6 7 8 9 15 16 17 18 19 25 26 27 28 29
+#define THUMBS 36 37 38 39 40 41
+// #define THUMBS 30 31 32 33
 
 /* Nav cluster */
 
@@ -103,31 +50,37 @@
 };
 
 // Home-row mods
-#define HRGRAVE &hml LALT         GRAVE
-#define HRDLLR  &hml LCTL         DLLR
-#define HRPRCNT &hml LGUI         PRCNT
-#define HRCARET &hml LSHFT        CARET
-#define LTHUMB  &hmt LS(LC(LALT)) TAB
-#define RTHUMB  &hmt LS(LC(LALT)) DEL
+#define HREXCL  &hml LCTRL EXCL 
+#define HRSTAR  &hml LALT  STAR 
+#define HRFSLH  &hml LGUI  FSLH 
+#define HREQUAL &hml LSHFT EQUAL
 
+#define HRLPAR  &hmr LSHFT LPAR 
+#define HRRPAR  &hmr LGUI  RPAR 
+#define HRSEMI  &hmr LALT  SEMI 
+#define HRQUOT  &hmr LCTRL QUOT
+
+#define HYP_TAB &mt LS(LS(LA(LGUI))) TAB
+#define MEH_DEL &mt LS(LS(LALT))     DEL
+
+#define MEH_SLH   &mt LS(LC(LALT)) FSLH
 #define NAV_LEFT  &mt_home 0   LEFT     // Tap: left         | Long-tap: start of line.
-#define NAV_RIGHT &mt_end 0    RIGHT    // Tap: right        | Long-tap: end   of line.
-#define NAV_UP    &mt LG(UP)   UP       // Tap: up           | Long-tap: start of doc.
 #define NAV_DOWN  &mt LG(DOWN) DOWN     // Tap: down         | Long-tap: end   of doc.
-#define NAV_BACK  &mt LG(BSPC) LA(BSPC) // Tap: delete word  | Long-tap: delete line.
-#define NAV_FORW  &mt LG(DEL)  LA(DEL)  // Tap: del word     | Long-tap: delete line fwd.
-#define NAV_BSPC  &mt LA(BSPC) BSPC     // Tap: backspace    | Long-tap: delete word.
-#define NAV_DEL   &mt LA(DEL)  DEL      // Tap: delete       | Long-tap: delete word fwd.
+#define NAV_UP    &mt LG(UP)   UP       // Tap: up           | Long-tap: start of doc.
+#define NAV_RIGHT &mt_end 0    RIGHT    // Tap: right        | Long-tap: end   of line.
+#define NAV_BSPC  &mt LG(BSPC) LA(BSPC) // Tap: bspc word    | Long-tap: bspc line.
+#define NAV_DEL   &mt LG(DEL)  LA(DEL)  // Tap: del  word    | Long-tap: del  line.
 
 /* Magic-shift & auto-layers */
 #define SMRT_SHIFT &smrt_shift LSHFT 0
 
 // Misc aliases. [TODO: clean up]
-#define CANCEL    &kp K_CANCEL            // Cancel caps-word & auto-layers.
-#define TERMNL    &kp LC(GRAVE)           // Open Terminal in VSCode
-#define DSK_APP   &hmr LSHFT LC(DOWN)     // Application windows.
-#define DSK_ALL   &hmr LGUI  LC(UP)       // Mission Control.
-#define DSK_NEXT  &hmr LCTRL LC(RIGHT)    // Next desktop.
+#define CANCEL    &kp K_CANCEL          // Cancel caps-word & auto-layers.
+#define TERMNL    &kp LC(GRAVE)         // Open Terminal in VSCode
+#define DSK_PREV  &kp LC(LEFT)          // Prev desktop.
+#define DSK_APP   &kp LC(DOWN)          // Application windows.
+#define DSK_ALL   &kp LC(UP)            // Mission Control.
+#define DSK_NEXT  &kp LC(RIGHT)         // Next desktop.
 
 / {
   behaviors {
@@ -152,39 +105,6 @@
       require-prior-idle-ms = <120>;
       hold-trigger-on-release;
       hold-trigger-key-positions = <KEYS_L THUMBS>;
-    };
-    hmt: hmt {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      bindings = <&kp>, <&kp>;
-      flavor = "balanced";
-      tapping-term-ms = <280>;
-      quick-tap-ms = <QUICK_TAP_MS>;
-      require-prior-idle-ms = <120>;
-      hold-trigger-on-release;
-      hold-trigger-key-positions = <KEYS_L KEYS_R>;
-    };
-    hm_combo_lpar: hm_combo_lpar {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      bindings = <&kp>, <&lpar_lt>;
-      flavor = "balanced";
-      tapping-term-ms = <280>;
-      quick-tap-ms = <QUICK_TAP_MS>;
-      require-prior-idle-ms = <120>;
-      hold-trigger-on-release;
-      hold-trigger-key-positions = <KEYS_L>;
-    };
-    hm_combo_rpar: hm_combo_rpar {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      bindings = <&kp>, <&rpar_gt>;
-      flavor = "balanced";
-      tapping-term-ms = <280>;
-      quick-tap-ms = <QUICK_TAP_MS>;
-      require-prior-idle-ms = <120>;
-      hold-trigger-on-release;
-      hold-trigger-key-positions = <KEYS_L>;
     };
 
     mt_home: mt_home {
@@ -269,21 +189,23 @@
     qexcl: qexcl {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
-      bindings = <&kp QMARK>, <&kp EXCL>;
+      bindings = <&kp EXCL>, <&kp QMARK>;
       mods = <(MOD_LSFT | MOD_RSFT)>;
     };
 
-    // Tap: left/right parenthesis | Shft + tap: less-than/greater-than.
-    lpar_lt: lpar_lt {
+    // Tap: underscore | Shift + tap: minus.
+    uminus: uminus {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
-      bindings = <&kp LPAR>, <&kp LT>;
+      bindings = <&kp UNDER>, <&kp MINUS>;
       mods = <(MOD_LSFT | MOD_RSFT)>;
     };
-    rpar_gt: rpar_lt {
+
+    // Tap: forward slash | Shift + tap: back slash.
+    fbslh: fbslh {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
-      bindings = <&kp RPAR>, <&kp GT>;
+      bindings = <&kp FSLH>, <&kp BSLH>;
       mods = <(MOD_LSFT | MOD_RSFT)>;
     };
 
@@ -309,14 +231,6 @@
       wait-ms = <0>;
       tap-ms = <5>;
     };
-
-    // Tap: copy | double-tap: cut.
-    copy_cut: copy_cut {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      bindings = <&kp LG(C)>, <&kp LG(X)>;
-      tapping-term-ms = <200>;
-    };
   };
   combos {
     compatible = "zmk,combos";
@@ -324,99 +238,31 @@
     /* Horizontal combos - left hand */
     combo_cut {
       bindings = <&kp LG(X)>;
-      key-positions = <LB3 LB1>;
-      layers = <DEF NAV NUM>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+      key-positions = <26 28>;
+      layers = <DEF NAV SYM NUM>;
+      timeout-ms = <22>;
+      require-prior-idle-ms = <150>;
     };
     combo_copy {
       bindings = <&kp LG(C)>;
-      key-positions = <LB3 LB2>;
-      layers = <DEF NAV NUM>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+      key-positions = <26 27>;
+      layers = <DEF NAV SYM NUM>;
+      timeout-ms = <22>;
+      require-prior-idle-ms = <150>;
     };
     combo_paste {
       bindings = <&kp LG(V)>;
-      key-positions = <LB2 LB1>;
-      layers = <DEF NAV NUM>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+      key-positions = <27 28>;
+      layers = <DEF NAV SYM NUM>;
+      timeout-ms = <22>;
+      require-prior-idle-ms = <150>;
     };
+  };
 
-    /* Horizontal combos - right hand */
-    combo_bspc {
-      bindings = <&kp BSPC>;
-      key-positions = <RT1 RT2>;
-      layers = <DEF NAV NUM>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
-    };
-    combo_del {
-      bindings = <&kp DEL>;
-      key-positions = <RT2 RT3>;
-      layers = <DEF NAV NUM>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
-    };
-
-    combo_lpar {
-      bindings = <&hm_combo_lpar RS(LGUI) 0>;
-      key-positions = <RM1 RM2>;
-      layers = <DEF NUM>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
-    };
-    combo_rpar {
-      bindings = <&hm_combo_rpar LC(LGUI) 0>;
-      key-positions = <RM2 RM3>;
-      layers = <DEF NUM>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
-    };
-    combo_lt {
-      bindings = <&kp LT>;
-      key-positions = <RM1 RM2>;
-      layers = <NAV>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
-    };
-    combo_gt {
-      bindings = <&kp GT>;
-      key-positions = <RM2 RM3>;
-      layers = <NAV>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
-    };
-
-    combo_lbkt {
-      bindings = <&kp LBKT>;
-      key-positions = <RB1 RB2>;
-      layers = <DEF NUM>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
-    };
-    combo_rbkt {
-      bindings = <&kp RBKT>;
-      key-positions = <RB2 RB3>;
-      layers = <DEF NUM>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
-    };
-    combo_lbrc {
-      bindings = <&kp LBRC>;
-      key-positions = <RB1 RB2>;
-      layers = <NAV>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
-    };
-    combo_rbrc {
-      bindings = <&kp RBRC>;
-      key-positions = <RB2 RB3>;
-      layers = <NAV>;
-      timeout-ms = <COMBO_TERM_FAST>;
-      require-prior-idle-ms = <COMBO_IDLE_FAST>;
-    };
+  email: email {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&none &kp C &kp G &kp R &kp O &kp S &kp S &kp M &kp A &kp N &kp AT &kp A &kp Z &kp F &kp O &kp U &kp N &kp D &kp A &kp T &kp I &kp O &kp N &kp DOT &kp O &kp R &kp G>;
   };
 
   conditional_layers {
@@ -431,31 +277,40 @@
     compatible = "zmk,keymap";
 
     def {
+      // Tarmak DH 1
       bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp TAB       &kp Q         &kp W         &kp E         &kp R         &kp T           &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BSLH
+    TERMNL        &kp Q         &kp W         &kp J         &kp R         &kp T           &kp Y         &kp U         &kp I         &kp O         &kp P         &uminus
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+<<<<<<< HEAD
     &kp ESC       &hml LCTRL A  &hml LALT S   &hml LGUI D   &hml LSHFT F  &kp G           &kp H         &hmr RSHFT J  &hmr LGUI K   &hmr LALT L   &hmr LCTRL SEMI &kp SQT
+=======
+    &kp ESC       &hml LCTRL A  &hml LALT S   &hml LGUI D   &hml LSHFT F  &kp G           &kp M         &hmr RSHFT N  &hmr LGUI E   &hmr LALT L  &hmr LCTRL SQT &kp SEMI
+>>>>>>> 3f32996 (Tarmak round 1)
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    TERMNL        &kp Z         &kp X         &kp C         &kp V         &kp B           &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH      &qexcl
+    &fbslh        &kp Z         &kp X         &kp C         &kp V         &kp B           &kp K         &kp H         &comma_morph  &dot_morph    MEH_SLH       &qexcl
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                              LTHUMB        &lt SYM RET   &lt_spc NAV 0   SMRT_SHIFT    &lt NUM BSPC  RTHUMB
+                                              HYP_TAB       &lt SYM RET   &lt NAV SPC     SMRT_SHIFT    &lt NUM BSPC  MEH_DEL
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
       >;
 
-      label = "Qwerty";
+      label = "Base";
     };
     nav {
       bindings = <
       // \  /
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    ___           ___           ___           ___           ___           ___             ___           NAV_BSPC      &kp TAB       NAV_DEL       ___           ___
+    ___           ___           ___           ___           ___           &email          ___           ___           &kp TAB       ___           ___           ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+<<<<<<< HEAD
     ___           &sk LCTRL     &sk LALT      &sk LGUI      &sk LSHFT     ___             NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET       ___
+=======
+    ___           &sk LCTRL     &sk LALT      &sk LGUI      &sk LSHFT     ___             NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     ___           ___
+>>>>>>> 3f32996 (Tarmak round 1)
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           ___           ___           ___           ___             &kp INS       &kp PG_UP     &kp PG_DN     ___           ___           ___
+    ___           ___           DSK_PREV      DSK_ALL       DSK_NEXT      ___             ___           &kp PG_UP     &kp PG_DN     ___           ___           ___
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                              ___           ___           ___             CANCEL        NAV_BACK      NAV_FORW
+                                              ___           ___           ___             CANCEL        NAV_BSPC      NAV_DEL
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
       >;
 
@@ -463,12 +318,21 @@
     };
     sym {
       bindings = <
+      // BSLH PIPE 
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+<<<<<<< HEAD
     ___           &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT       &kp EQUAL     &kp LBRC      &kp RBRC      &kp PLUS      &kp COLON     ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     ___           &sk LCTRL     &sk LALT      &sk LGUI      &sk LSHFT     &kp CARET       &kp STAR      &kp LPAR      &kp RPAR      &kp MINUS     &kp SEMI      ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     ___           ___           ___           &kp BSLH      &kp PIPE      &kp AMPS        &kp TILDE     &kp LBKT      &kp RBKT      &kp UNDER     &kp GRAVE     ___
+=======
+    ___           &kp GRAVE     &kp LT        &kp GT        &kp MINUS     &kp PIPE        &kp CARET     &kp LBRC      &kp RBRC      &kp DLLR      ___           ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           HREXCL        HRSTAR        HRFSLH        HREQUAL       &kp AMPS        &kp HASH      HRLPAR        HRRPAR        HRSEMI        HRQUOT        ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           &kp TILDE     &kp PLUS      &kp LBKT      &kp RBKT      &kp PRCNT       &kp AT        &kp COLON     &kp COMMA     &kp DOT       &kp SQT       ___
+>>>>>>> 3f32996 (Tarmak round 1)
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                                ___           ___           ___             ___           ___           ___
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
@@ -479,11 +343,15 @@
     num {
       bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    ___           &kp FSLH      &kp N7        &kp N8        &kp N9        &kp PLUS        ___           ___           ___           ___           ___           ___
+    ___           &kp STAR      &kp N7        &kp N8        &kp N9        &kp PLUS        ___           &kp F9        &kp F10       &kp F11        &kp F12      ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────── ──┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+<<<<<<< HEAD
     ___           &sk LCTRL     &hml LALT N4  &hml LGUI N5  &hml LSHFT N6 &kp MINUS       ___           ___           ___           ___           ___           ___
+=======
+    ___           &sk LCTRL     &hml LALT N4  &hml LGUI N5  &hml LSHFT N6 &kp MINUS       ___           &hmr LSHFT F5 &hmr LGUI F6  &hmr LALT F7  &hmr LCTRL F8 ___
+>>>>>>> 3f32996 (Tarmak round 1)
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────── ──┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           &kp STAR      &kp N1        &kp N2        &kp N3        &kp EQUAL       ___           ___           ___           ___           ___           ___
+    ___           &kp FSLH      &kp N1        &kp N2        &kp N3        &kp EQUAL       ___           &kp F1        &kp F2        &kp F3        &kp F4        ___
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼────────── ──┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                               &kp DOT       &lt SYM N0    ___             ___           ___           ___
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
@@ -494,11 +362,15 @@
     sys {
       bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR      ___           &kp F7        &kp F8        &kp F9        &kp F10       ___
+    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR      ___           TERMNL        ___           ___           ___           ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+<<<<<<< HEAD
     ___           &sk LCTRL     &sk LALT      &sk LGUI      &sk LSHFT     ___             ___           &kp F4        &kp F5        &kp F6        &kp F11       ___
+=======
+    ___           ___           &kp C_PREV    &kp C_NEXT    &kp C_PP      ___             DSK_PREV      DSK_APP       DSK_ALL       DSK_NEXT      ___           ___
+>>>>>>> 3f32996 (Tarmak round 1)
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    ___             ___           &kp F1        &kp F2        &kp F3        &kp F12       ___
+    ___           ___           &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    ___             ___           ___           ___           ___           ___           ___
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                               ___           ___           ___             ___           ___           ___
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
@@ -506,5 +378,69 @@
 
       label = "System";
     };
+    /* def {
+      // Tarmak DH 2
+      bindings = <
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &kp TAB       &kp Q         &kp W         &kp F         &kp R         &kp B           &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BSLH
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp ESC       &hml LCTRL A  &hml LALT S   &hml LGUI D   &hml LSHFT T  &kp G           &kp M         &hmr RSHFT N  &hmr LGUI E   &hmr LALT L  &hmr LCTRL SQT &kp SEMI
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    TERMNL        &kp Z         &kp X         &kp C         &kp J         &kp V           &kp K         &kp H         &comma_morph  &dot_morph    MEH_SLH       &qexcl
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                              HYP_TAB       &lt SYM RET   &lt NAV SPC     SMRT_SHIFT    &lt NUM BSPC  MEH_DEL
+//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
+      >;
+
+      label = "Base";
+    }; */
+    /* def {
+      // Tarmak DH 3
+      bindings = <
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &kp TAB       &kp Q         &kp W         &kp F         &kp J         &kp B           &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BSLH
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp ESC       &hml LCTRL A  &hml LALT R   &hml LGUI S   &hml LSHFT T  &kp G           &kp M         &hmr RSHFT N  &hmr LGUI E   &hmr LALT L  &hmr LCTRL SQT &kp SEMI
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    TERMNL        &kp Z         &kp X         &kp C         &kp D         &kp V           &kp K         &kp H         &comma_morph  &dot_morph    MEH_SLH       &qexcl
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                              HYP_TAB       &lt SYM RET   &lt NAV SPC     SMRT_SHIFT    &lt NUM BSPC  MEH_DEL
+//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
+      >;
+
+      label = "Base";
+    }; */
+    /* def {
+      // Tarmak DH 4
+      bindings = <
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &kp TAB       &kp Q         &kp W         &kp F         &kp P         &kp B           &kp J         &kp U         &kp I         &kp Y         &kp SQT       &kp BSLH
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp ESC       &hml LCTRL A  &hml LALT R   &hml LGUI S   &hml LSHFT T  &kp G           &kp M         &hmr RSHFT N  &hmr LGUI E   &hmr LALT L   &hmr LCTRL O  &kp SEMI
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    TERMNL        &kp Z         &kp X         &kp C         &kp D         &kp V           &kp K         &kp H         &comma_morph  &dot_morph    MEH_SLH       &qexcl
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                              HYP_TAB       &lt SYM RET   &lt NAV SPC     SMRT_SHIFT    &lt NUM BSPC  MEH_DEL
+//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
+      >;
+
+      label = "Base";
+    }; */
+    /* def {
+      // Colemak DH
+      bindings = <
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &kp TAB       &kp Q         &kp W         &kp F         &kp P         &kp B           &kp J         &kp L         &kp U         &kp Y         &kp SQT       &kp BSLH
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp ESC       &hml LCTRL A  &hml LALT R   &hml LGUI S   &hml LSHFT T  &kp G           &kp M         &hmr RSHFT N  &hmr LGUI E   &hmr LALT I   &hmr LCTRL O  &kp SEMI
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    TERMNL        &kp Z         &kp X         &kp C         &kp D         &kp V           &kp K         &kp H         &comma_morph  &dot_morph    MEH_SLH       &qexcl
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                              HYP_TAB       &lt SYM RET   &lt NAV SPC     SMRT_SHIFT    &lt NUM BSPC  MEH_DEL
+//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
+      >;
+
+      label = "Base";
+    }; */
   };
 };

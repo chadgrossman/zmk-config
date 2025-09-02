@@ -1,0 +1,510 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#define DEF 0
+#define NAV 1
+#define SYM 2
+#define NUM 3
+#define SYS 4
+
+#define XXX &none
+#define ___ &trans
+
+/* Global defaults */
+
+#define QUICK_TAP_MS 175
+
+#define COMBO_TERM_FAST 22
+#define COMBO_TERM_SLOW 30
+
+#define COMBO_IDLE_FAST 150
+#define COMBO_IDLE_SLOW 50
+
+#define LT0  5  // left-top row
+#define LT1  4
+#define LT2  3
+#define LT3  2
+#define LT4  1
+#define LT5  0
+
+#define RT0  6  // right-top row
+#define RT1  7
+#define RT2  8
+#define RT3  9
+#define RT4 10
+#define RT5 11
+
+#define LM0 17  // left-middle row
+#define LM1 16
+#define LM2 15
+#define LM3 14
+#define LM4 13
+#define LM5 12
+
+#define RM0 18  // right-middle row
+#define RM1 19
+#define RM2 20
+#define RM3 21
+#define RM4 22
+#define RM5 23
+
+#define LB0 29  // left-bottom row
+#define LB1 28
+#define LB2 27
+#define LB3 26
+#define LB4 25
+#define LB5 24
+
+#define RB0 30  // right-bottom row
+#define RB1 31
+#define RB2 32
+#define RB3 33
+#define RB4 34
+#define RB5 35
+
+#define LH0 38  // left thumb keys
+#define LH1 37
+#define LH2 36
+
+#define RH0 39  // right thumb keys
+#define RH1 40
+#define RH2 41
+
+&sk {
+  release-after-ms = <900>;
+  quick-release;
+};
+
+&sl { // Allow sticky mods to chord across sticky layers.
+  ignore-modifiers;
+};
+
+&lt {
+  flavor = "balanced";
+  tapping-term-ms = <200>;
+  quick-tap-ms = <QUICK_TAP_MS>;
+};
+
+/* Homerow mods */
+
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5
+#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2
+
+/* Nav cluster */
+
+&mt { // Trigger tap-action on all interrupts.
+  flavor = "tap-preferred";
+  tapping-term-ms = <220>;
+  quick-tap-ms = <220>;
+  hold-trigger-key-positions = <0>;
+};
+
+// Home-row mods
+#define HRGRAVE &hml LALT         GRAVE
+#define HRDLLR  &hml LCTL         DLLR
+#define HRPRCNT &hml LGUI         PRCNT
+#define HRCARET &hml LSHFT        CARET
+#define LTHUMB  &hmt LS(LC(LALT)) TAB
+#define RTHUMB  &hmt LS(LC(LALT)) DEL
+
+#define NAV_LEFT  &mt_home 0   LEFT     // Tap: left         | Long-tap: start of line.
+#define NAV_RIGHT &mt_end 0    RIGHT    // Tap: right        | Long-tap: end   of line.
+#define NAV_UP    &mt LG(UP)   UP       // Tap: up           | Long-tap: start of doc.
+#define NAV_DOWN  &mt LG(DOWN) DOWN     // Tap: down         | Long-tap: end   of doc.
+#define NAV_BACK  &mt LG(BSPC) LA(BSPC) // Tap: delete word  | Long-tap: delete line.
+#define NAV_FORW  &mt LG(DEL)  LA(DEL)  // Tap: del word     | Long-tap: delete line fwd.
+#define NAV_BSPC  &mt LA(BSPC) BSPC     // Tap: backspace    | Long-tap: delete word.
+#define NAV_DEL   &mt LA(DEL)  DEL      // Tap: delete       | Long-tap: delete word fwd.
+
+/* Magic-shift & auto-layers */
+#define SMRT_SHIFT &smrt_shift LSHFT 0
+
+// Misc aliases. [TODO: clean up]
+#define CANCEL    &kp K_CANCEL            // Cancel caps-word & auto-layers.
+#define TERMNL    &kp LC(GRAVE)           // Open Terminal in VSCode
+#define DSK_APP   &hmr LSHFT LC(DOWN)     // Application windows.
+#define DSK_ALL   &hmr LGUI  LC(UP)       // Mission Control.
+#define DSK_NEXT  &hmr LCTRL LC(RIGHT)    // Next desktop.
+
+/ {
+  behaviors {
+    hml: hml {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&kp>;
+      flavor = "balanced";
+      tapping-term-ms = <280>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <120>;
+      hold-trigger-on-release;
+      hold-trigger-key-positions = <KEYS_R THUMBS>;
+    };
+    hmr: hmr {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&kp>;
+      flavor = "balanced";
+      tapping-term-ms = <280>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <120>;
+      hold-trigger-on-release;
+      hold-trigger-key-positions = <KEYS_L THUMBS>;
+    };
+    hmt: hmt {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&kp>;
+      flavor = "balanced";
+      tapping-term-ms = <280>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <120>;
+      hold-trigger-on-release;
+      hold-trigger-key-positions = <KEYS_L KEYS_R>;
+    };
+    hm_combo_lpar: hm_combo_lpar {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&lpar_lt>;
+      flavor = "balanced";
+      tapping-term-ms = <280>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <120>;
+      hold-trigger-on-release;
+      hold-trigger-key-positions = <KEYS_L>;
+    };
+    hm_combo_rpar: hm_combo_rpar {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&rpar_gt>;
+      flavor = "balanced";
+      tapping-term-ms = <280>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <120>;
+      hold-trigger-on-release;
+      hold-trigger-key-positions = <KEYS_L>;
+    };
+
+    mt_home: mt_home {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&masked_home>, <&kp>;
+      flavor = "tap-preferred";
+      tapping-term-ms = <220>;
+      quick-tap-ms = <220>;
+      hold-trigger-key-positions = <0>;
+    };
+    mt_end: mt_end {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&masked_end>, <&kp>;
+      flavor = "tap-preferred";
+      tapping-term-ms = <220>;
+      quick-tap-ms = <220>;
+      hold-trigger-key-positions = <0>;
+    };
+
+    // Tap: sticky-shift
+    // Shift + tap/ double-tap: caps-word | Hold: shift.
+    smrt_shift: smrt_shift {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&smrt_shift_tap>;
+      flavor = "balanced";
+      tapping-term-ms = <200>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+    };
+    smrt_shift_tap: smrt_shift_tap {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&sk LSHFT>, <&caps_word>;
+      mods = <(MOD_LSFT)>;
+    };
+
+    // Mask GUI on left/right hold to avoid accidental jumps to start/end of doc.
+    masked_home: masked_home {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp LG(LEFT)>, <&kp LG(LEFT)>;
+      mods = <(MOD_LGUI)>;
+    };
+    masked_end: masked_end {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp LG(RIGHT)>, <&kp LG(RIGHT)>;
+      mods = <(MOD_LGUI)>;
+    };
+
+    // Tap: comma | Shift + tap: semicolon | GUI + shift + tap: <.
+    comma_morph: comma_morph {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp COMMA>, <&comma_inner_morph>;
+      mods = <(MOD_LSFT | MOD_RSFT)>;
+    };
+    comma_inner_morph: comma_inner_morph {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp SEMICOLON>, <&kp LESS_THAN>;
+      mods = <(MOD_LGUI | MOD_RGUI)>;
+    };
+
+    // Tap: dot | Shift + tap: colon | GUI + shift + tap: >.
+    dot_morph: dot_morph {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp DOT>, <&dot_inner_morph>;
+      mods = <(MOD_LSFT | MOD_RSFT)>;
+    };
+    dot_inner_morph: dot_inner_morph {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp COLON>, <&kp GREATER_THAN>;
+      mods = <(MOD_LGUI | MOD_RGUI)>;
+    };
+
+    // Tap: qmark | Shift + tap: excl.
+    qexcl: qexcl {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp QMARK>, <&kp EXCL>;
+      mods = <(MOD_LSFT | MOD_RSFT)>;
+    };
+
+    // Tap: left/right parenthesis | Shft + tap: less-than/greater-than.
+    lpar_lt: lpar_lt {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp LPAR>, <&kp LT>;
+      mods = <(MOD_LSFT | MOD_RSFT)>;
+    };
+    rpar_gt: rpar_lt {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp RPAR>, <&kp GT>;
+      mods = <(MOD_LSFT | MOD_RSFT)>;
+    };
+
+    // Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: nav layer.
+    lt_spc: lt_spc {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&mo>, <&spc_morph>;
+      flavor = "balanced";
+      tapping-term-ms = <200>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+    };
+    spc_morph: spc_morph {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp SPACE>, <&dot_spc>;
+      mods = <(MOD_LSFT | MOD_RSFT)>;
+    };
+    dot_spc: dot_spc {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&kp DOT &kp SPACE &sk LSHFT>;
+      wait-ms = <0>;
+      tap-ms = <5>;
+    };
+
+    // Tap: copy | double-tap: cut.
+    copy_cut: copy_cut {
+      compatible = "zmk,behavior-tap-dance";
+      #binding-cells = <0>;
+      bindings = <&kp LG(C)>, <&kp LG(X)>;
+      tapping-term-ms = <200>;
+    };
+  };
+  combos {
+    compatible = "zmk,combos";
+
+    /* Horizontal combos - left hand */
+    combo_cut {
+      bindings = <&kp LG(X)>;
+      key-positions = <LB3 LB1>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    combo_copy {
+      bindings = <&kp LG(C)>;
+      key-positions = <LB3 LB2>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    combo_paste {
+      bindings = <&kp LG(V)>;
+      key-positions = <LB2 LB1>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+
+    /* Horizontal combos - right hand */
+    combo_bspc {
+      bindings = <&kp BSPC>;
+      key-positions = <RT1 RT2>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    combo_del {
+      bindings = <&kp DEL>;
+      key-positions = <RT2 RT3>;
+      layers = <DEF NAV NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+
+    combo_lpar {
+      bindings = <&hm_combo_lpar RS(LGUI) 0>;
+      key-positions = <RM1 RM2>;
+      layers = <DEF NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    combo_rpar {
+      bindings = <&hm_combo_rpar LC(LGUI) 0>;
+      key-positions = <RM2 RM3>;
+      layers = <DEF NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    combo_lt {
+      bindings = <&kp LT>;
+      key-positions = <RM1 RM2>;
+      layers = <NAV>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    combo_gt {
+      bindings = <&kp GT>;
+      key-positions = <RM2 RM3>;
+      layers = <NAV>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+
+    combo_lbkt {
+      bindings = <&kp LBKT>;
+      key-positions = <RB1 RB2>;
+      layers = <DEF NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    combo_rbkt {
+      bindings = <&kp RBKT>;
+      key-positions = <RB2 RB3>;
+      layers = <DEF NUM>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    combo_lbrc {
+      bindings = <&kp LBRC>;
+      key-positions = <RB1 RB2>;
+      layers = <NAV>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+    combo_rbrc {
+      bindings = <&kp RBRC>;
+      key-positions = <RB2 RB3>;
+      layers = <NAV>;
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+    };
+  };
+
+  conditional_layers {
+    compatible = "zmk,conditional-layers";
+    tri_layer_sys {
+      if-layers = <NUM SYM>;
+      then-layer = <SYS>;
+    };
+  };
+  
+  keymap {
+    compatible = "zmk,keymap";
+
+    def {
+      bindings = <
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &kp TAB       &kp Q         &kp W         &kp E         &kp R         &kp T           &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BSLH
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp ESC       &hml LALT A   &hml LCTRL S  &hml LGUI D   &hml LSHFT F  &kp G           &kp H         &hmr RSHFT J  &hmr LGUI K   &hmr LCTRL L  &hmr LALT SEMI &kp SQT
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    TERMNL        &kp Z         &kp X         &kp C         &kp V         &kp B           &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH      &qexcl
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                              LTHUMB        &lt SYM RET   &lt_spc NAV 0   SMRT_SHIFT    &lt NUM BSPC  RTHUMB
+//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
+      >;
+
+      label = "Qwerty";
+    };
+    nav {
+      bindings = <
+      // \  /
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    ___           ___           ___           ___           ___           ___             ___           NAV_BSPC      &kp TAB       NAV_DEL       ___           ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           &sk LALT      &sk LCTRL     &sk LGUI      &sk LSHFT     ___             NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET       ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           ___           ___           ___           ___           ___             &kp INS       &kp PG_UP     &kp PG_DN     ___           ___           ___
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                              ___           ___           ___             CANCEL        NAV_BACK      NAV_FORW
+//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
+      >;
+
+      label = "Magic";
+    };
+    sym {
+      bindings = <
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    ___           &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT       &kp EQUAL     &kp GRAVE     &kp COLON     &kp SEMI      &kp PLUS      ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           &sk LALT      &sk LCTRL     &sk LGUI      &sk LSHFT     &kp CARET       &kp STAR      &kp LPAR      &kp LBRC      &kp LBKT      &kp MINUS     ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           ___           ___           &kp BSLH      &kp PIPE      &kp AMPS        &kp TILDE     &kp RPAR      &kp RBRC      &kp RBKT      &kp UNDER     ___
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                               ___           ___           ___             ___           ___           ___
+//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
+  >;
+    
+      label = "Symbol";
+    };
+    num {
+      bindings = <
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    ___           &kp FSLH      &kp N7        &kp N8        &kp N9        &kp PLUS        ___           ___           ___           ___           ___           ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────── ──┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           &sk LALT      &hml LCTRL N4 &hml LGUI N5  &hml LSHFT N6 &kp MINUS       ___           ___           ___           ___           ___           ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────── ──┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           &kp STAR      &kp N1        &kp N2        &kp N3        &kp EQUAL       ___           ___           ___           ___           ___           ___
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼────────── ──┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                              &kp DOT       &lt SYM N0    ___             ___           ___           ___
+//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
+      >;
+
+      label = "Number";
+    };
+    sys {
+      bindings = <
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR      ___           &kp F7        &kp F8        &kp F9        &kp F10       ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           &sk LALT      &sk LCTRL     &sk LGUI      &sk LSHFT     ___             ___           &kp F4        &kp F5        &kp F6        &kp F11       ___
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           ___           &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    ___             ___           &kp F1        &kp F2        &kp F3        &kp F12       ___
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                              ___           ___           ___             ___           ___           ___
+//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
+      >;
+
+      label = "System";
+    };
+  };
+};
