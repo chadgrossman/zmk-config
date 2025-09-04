@@ -277,14 +277,14 @@
     compatible = "zmk,keymap";
 
     def {
-      // Tarmak DH 1
+      // Tarmak 1
       bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
     TERMNL        &kp Q         &kp W         &kp J         &kp R         &kp T           &kp Y         &kp U         &kp I         &kp O         &kp P         &uminus
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp ESC       &hml LCTRL A  &hml LALT S   &hml LGUI D   &hml LSHFT F  &kp G           &kp M         &hmr RSHFT N  &hmr LGUI E   &hmr LALT L  &hmr LCTRL SQT &kp SEMI
+    &kp ESC       &hml LCTRL A  &hml LALT S   &hml LGUI D   &hml LSHFT F  &kp G           &kp H         &hmr RSHFT N  &hmr LGUI E   &hmr LALT L  &hmr LCTRL SQT &kp SEMI
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &fbslh        &kp Z         &kp X         &kp C         &kp V         &kp B           &kp K         &kp H         &comma_morph  &dot_morph    MEH_SLH       &qexcl
+    &fbslh        &kp Z         &kp X         &kp C         &kp V         &kp B           &kp K         &kp M         &comma_morph  &dot_morph    MEH_SLH       &qexcl
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                               HYP_TAB       &lt SYM RET   &lt NAV SPC     SMRT_SHIFT    &lt NUM BSPC  MEH_DEL
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
