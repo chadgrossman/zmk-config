@@ -114,7 +114,7 @@
     bml: bml {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
-      bindings = <&lt>, <&kp>;
+      bindings = <&mo>, <&kp>;
       flavor = "balanced";
       tapping-term-ms = <200>;
       quick-tap-ms = <QUICK_TAP_MS>;
@@ -125,7 +125,7 @@
     bmr: bmr {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
-      bindings = <&lt>, <&kp>;
+      bindings = <&mo>, <&kp>;
       flavor = "balanced";
       tapping-term-ms = <200>;
       quick-tap-ms = <QUICK_TAP_MS>;
