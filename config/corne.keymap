@@ -70,8 +70,8 @@
 
 #define MEH_SLH   &mt LS(LC(LALT)) FSLH
 #define NAV_LEFT  &mt_home 0   LEFT     // Tap: left         | Long-tap: start of line.
-#define NAV_DOWN  &mt LG(DOWN) DOWN     // Tap: down         | Long-tap: end   of doc.
-#define NAV_UP    &mt LG(UP)   UP       // Tap: up           | Long-tap: start of doc.
+#define NAV_DOWN  &mt PG_DN    DOWN     // Tap: down         | Long-tap: page down.
+#define NAV_UP    &mt PG_UP    UP       // Tap: up           | Long-tap: page up.
 #define NAV_RIGHT &mt_end 0    RIGHT    // Tap: right        | Long-tap: end   of line.
 #define NAV_BSPC  &mt LG(BSPC) LA(BSPC) // Tap: bspc word    | Long-tap: bspc line.
 #define NAV_DEL   &mt LG(DEL)  LA(DEL)  // Tap: del  word    | Long-tap: del  line.
@@ -80,12 +80,12 @@
 #define SMRT_SHIFT &smrt_shift LSHFT 0
 
 // Misc aliases. [TODO: clean up]
-#define CANCEL    &kp K_CANCEL          // Cancel caps-word & auto-layers.
-#define TERMNL    &kp LC(GRAVE)         // Open Terminal in VSCode
-#define DSK_PREV  &kp LC(LEFT)          // Prev desktop.
-#define DSK_APP   &kp LC(DOWN)          // Application windows.
-#define DSK_ALL   &kp LC(UP)            // Mission Control.
-#define DSK_NEXT  &kp LC(RIGHT)         // Next desktop.
+#define SYS_CANCEL &lt SYS K_CANCEL      // Cancel caps-word & auto-layers.
+#define TERMNL     &kp LC(GRAVE)         // Open Terminal in VSCode
+#define DSK_PREV   &kp LC(LEFT)          // Prev desktop.
+#define DSK_APP    &kp LC(DOWN)          // Application windows.
+#define DSK_ALL    &kp LC(UP)            // Mission Control.
+#define DSK_NEXT   &kp LC(RIGHT)         // Next desktop.
 
 / {
   behaviors {
@@ -328,7 +328,7 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &fbslh        &kp Z         &kp X         &kp C         &bml SYL V    &kp B           &kp N         &bmr SYR M    &kp COMMA     &kp DOT       MEH_SLH       &qexcl
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                              HYP_TAB       &lt SYM RET   &lt NAV SPC     SMRT_SHIFT    &lt NUM BSPC  MEH_DEL
+                                              HYP_TAB       &lt SYM RET   &lt NAV SPC     SMRT_SHIFT    &lt SYM BSPC  MEH_DEL
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
       >;
       label = "Base";
@@ -336,13 +336,13 @@
     nav {
       bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    ___           &kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6        &kp N7        &kp N8        &kp N9        &kp N0        ___
+    ___           &kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6        &kp N7        &kp N8        &kp N9        &kp N0        &kp MINUS
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     ___           &sk LCTRL     &sk LALT      &sk LGUI      &sk LSHFT     ___             NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     ___           ___
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           DSK_PREV      DSK_ALL       DSK_NEXT      ___             ___           &kp PG_UP     &kp PG_DN     ___           ___           ___
+    ___           ___           ___           ___           ___           ___             ___           ___           ___           ___           ___           ___
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                              ___           ___           ___             CANCEL        NAV_BSPC      NAV_DEL
+                                              ___           ___           ___             SYS_CANCEL    NAV_BSPC      NAV_DEL
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
       >;
       label = "Magic";
